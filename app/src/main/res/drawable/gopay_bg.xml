@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gopay_bg xmlns:android="http://schemas.android.com/apk/res/android">
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="#38A169" />
+        <corners android:radius="8dp" />
+    </shape>
+</gopay_bg>
