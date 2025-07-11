@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutUsActivity"
+    tools:context=".About_Us"
     android:background="#FFFFFF">
 
     <!-- Header dengan Back Button dan Title -->
