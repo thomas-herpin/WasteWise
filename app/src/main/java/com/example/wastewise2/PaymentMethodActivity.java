@@ -34,19 +34,14 @@ public class PaymentMethodActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_payment_method);
 
-        // Terima data dari OrderSummaryActivity
         receiveIntentData();
 
-        // Initialize views
         initViews();
 
-        // Setup listeners
         setupListeners();
 
-        // Set default selection
         setDefaultSelection();
 
-        // Apply window insets
         View rootView = findViewById(android.R.id.content);
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
