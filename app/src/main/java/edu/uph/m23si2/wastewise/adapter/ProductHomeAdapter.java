@@ -15,21 +15,21 @@ import java.util.ArrayList;
 import edu.uph.m23si2.wastewise.R;
 import edu.uph.m23si2.wastewise.model.Product;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeAdapter.ProductHomeViewHolder> {
 
     Context context;
     ArrayList<Product> productArrayList;
 
-    public ProductAdapter(Context context, ArrayList<Product> productArrayList) {
+    public ProductHomeAdapter(Context context, ArrayList<Product> productArrayList) {
         this.context = context;
         this.productArrayList = productArrayList;
     }
 
-    public static class ProductViewHolder extends RecyclerView.ViewHolder {
+    public static class ProductHomeViewHolder extends RecyclerView.ViewHolder {
         ImageView imvProduk;
         TextView txvJumlahItem, txvAlamatOutlet, txvHarga;
 
-        public ProductViewHolder(@NonNull View itemView) {
+        public ProductHomeViewHolder(@NonNull View itemView) {
             super(itemView);
             imvProduk = itemView.findViewById(R.id.imvProduk);
             txvJumlahItem = itemView.findViewById(R.id.txvJumlahItem);
@@ -40,13 +40,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @NonNull
     @Override
-    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_produk, parent, false);
-        return new ProductViewHolder(view);
+    public ProductHomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_produk_home, parent, false);
+        return new ProductHomeViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductHomeViewHolder holder, int position) {
         Product product = productArrayList.get(position);
 
         holder.imvProduk.setImageResource(product.getLogoOutlet());
