@@ -1,5 +1,6 @@
 package com.example.wastewise2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,26 +26,38 @@ public class PaymentBerhasilActivity extends AppCompatActivity {
     private TextView tvDateTime;
     private Button btnViewOrder;
 
+    // Data transaksi
+    private String transactionId = "133756";
+    private String storeName = "Roti O";
+    private String storeLocation = "Roti O - Karya";
+    private String pickupTime = "10.00";
+    private String orderDate = "Sabtu, 28 Sep 2025";
+    private String paymentMethod = "QRIS";
+    private String totalAmount = "Rp43.000";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_payment_berhasil);
 
-        // Handle window insets
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Initialize views
+
         initViews();
 
-        // Set data
+
+        loadDataFromIntent();
+
+
         setTransactionData();
 
-        // Set click listeners
+
         setClickListeners();
     }
 
@@ -57,31 +70,75 @@ public class PaymentBerhasilActivity extends AppCompatActivity {
         btnViewOrder = findViewById(R.id.btnViewOrder);
     }
 
+    private void loadDataFromIntent() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            transactionId = intent.getStringExtra("transaction_id") != null ?
+                    intent.getStringExtra("transaction_id") : transactionId;
+            storeName = intent.getStringExtra("store_name") != null ?
+                    intent.getStringExtra("store_name") : storeName;
+            storeLocation = intent.getStringExtra("store_location") != null ?
+                    intent.getStringExtra("store_location") : storeLocation;
+            pickupTime = intent.getStringExtra("pickup_time") != null ?
+                    intent.getStringExtra("pickup_time") : pickupTime;
+            orderDate = intent.getStringExtra("order_date") != null ?
+                    intent.getStringExtra("order_date") : orderDate;
+            paymentMethod = intent.getStringExtra("payment_method") != null ?
+                    intent.getStringExtra("payment_method") : paymentMethod;
+            totalAmount = intent.getStringExtra("total_amount") != null ?
+                    intent.getStringExtra("total_amount") : totalAmount;
+        }
+    }
+
     private void setTransactionData() {
-        // Set current date and time
+        // Set data dan waktu
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
         String currentDateTime = sdf.format(new Date());
-        tvDateTime.setText(currentDateTime);
 
-        // You can set other data here if needed
-        // tvTransactionId.setText("133756"); // Already set in XML
-        // tvOrder.setText("10 items Roti'O"); // Already set in XML
-        // tvTotal.setText("Rp 40.000"); // Already set in XML
-        // tvPaymentMethod.setText("QRIS"); // Already set in XML
+        if (tvDateTime != null) {
+            tvDateTime.setText(currentDateTime);
+        }
+
+        if (tvTransactionId != null) {
+            tvTransactionId.setText(transactionId);
+        }
+
+        if (tvOrder != null) {
+            tvOrder.setText("10 items " + storeName);
+        }
+
+        if (tvTotal != null) {
+            tvTotal.setText(totalAmount);
+        }
+
+        if (tvPaymentMethod != null) {
+            tvPaymentMethod.setText(paymentMethod);
+        }
     }
 
     private void setClickListeners() {
-        btnViewOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle view order button click
-                Toast.makeText(PaymentBerhasilActivity.this, "Redirecting to My Orders...", Toast.LENGTH_SHORT).show();
+        if (btnViewOrder != null) {
+            btnViewOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Navigasi ke AfterPaymentActivity
+                    Intent intent = new Intent(PaymentBerhasilActivity.this, AfterPaymentActivity.class);
+                    intent.putExtra("id_transaksi", transactionId);
+                    intent.putExtra("nama_toko", storeName);
+                    intent.putExtra("lokasi_toko", storeLocation);
+                    intent.putExtra("waktu_ambil", pickupTime);
+                    intent.putExtra("tanggal_pesan", orderDate);
+                    intent.putExtra("payment_method", paymentMethod);
+                    intent.putExtra("total_amount", totalAmount);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }
+    }
 
-                // TODO: Add intent to navigate to order history activity
-                // Intent intent = new Intent(PaymentBerhasilActivity.this, OrderHistoryActivity.class);
-                // startActivity(intent);
-                // finish();
-            }
-        });
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

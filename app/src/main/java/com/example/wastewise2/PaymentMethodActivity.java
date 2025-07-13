@@ -3,7 +3,6 @@ package com.example.wastewise2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,7 +22,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
     private RadioButton radioCash, radioOvo, radioDana, radioGopay, radioQris;
     private CardView cardCash, cardOvo, cardDana, cardGopay, cardQris;
 
-    private String selectedPaymentMethod = "Ovo"; // Default selection
+    private String selectedPaymentMethod = "OVO";
     private String totalAmount;
     private String orderId;
     private String restaurantName;
@@ -35,15 +34,11 @@ public class PaymentMethodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment_method);
 
         receiveIntentData();
-
         initViews();
-
         setupListeners();
-
         setDefaultSelection();
 
-        View rootView = findViewById(android.R.id.content);
-        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -61,11 +56,6 @@ public class PaymentMethodActivity extends AppCompatActivity {
             if (currentPaymentMethod != null) {
                 selectedPaymentMethod = currentPaymentMethod;
             }
-
-            // Log atau gunakan data ini sesuai kebutuhan
-            if (totalAmount != null) {
-                Toast.makeText(this, "Total Pesanan: " + totalAmount, Toast.LENGTH_SHORT).show();
-            }
         }
     }
 
@@ -73,168 +63,83 @@ public class PaymentMethodActivity extends AppCompatActivity {
         backButton = findViewById(R.id.backButton);
         paymentMethodGroup = findViewById(R.id.paymentMethodGroup);
 
-        // Initialize radio buttons
+
         radioCash = findViewById(R.id.radioCash);
         radioOvo = findViewById(R.id.radioOvo);
         radioDana = findViewById(R.id.radioDana);
         radioGopay = findViewById(R.id.radioGopay);
         radioQris = findViewById(R.id.radioQris);
 
-        // Initialize card views untuk area yang bisa diklik
-        initCardViews();
+        findCardViews();
     }
 
-    private void initCardViews() {
-        // Cari CardView berdasarkan ID jika tersedia, atau gunakan findViewByTag
-        // Alternatif: langsung cari CardView dari root view
-        View rootView = findViewById(android.R.id.content);
-        findCardViewsRecursively(rootView);
+    private void findCardViews() {
+        // Cari CardView berdasarkan LinearLayout ID yang ada di XML
+        View cashLayout = findViewById(R.id.llycash);
+        View ovoLayout = findViewById(R.id.llyovo);
+        View danaLayout = findViewById(R.id.llydana);
+        View gopayLayout = findViewById(R.id.llygopay);
+        View qrisLayout = findViewById(R.id.llyqris);
+
+        cardCash = getCardViewParent(cashLayout);
+        cardOvo = getCardViewParent(ovoLayout);
+        cardDana = getCardViewParent(danaLayout);
+        cardGopay = getCardViewParent(gopayLayout);
+        cardQris = getCardViewParent(qrisLayout);
     }
 
-    private void findCardViewsRecursively(View parent) {
-        if (parent instanceof CardView) {
-            CardView cardView = (CardView) parent;
+    private CardView getCardViewParent(View child) {
+        if (child == null) return null;
 
-            // Identifikasi CardView berdasarkan RadioButton yang ada di dalamnya
-            if (findRadioButtonInView(cardView, R.id.radioCash) != null) {
-                cardCash = cardView;
-            } else if (findRadioButtonInView(cardView, R.id.radioOvo) != null) {
-                cardOvo = cardView;
-            } else if (findRadioButtonInView(cardView, R.id.radioDana) != null) {
-                cardDana = cardView;
-            } else if (findRadioButtonInView(cardView, R.id.radioGopay) != null) {
-                cardGopay = cardView;
-            } else if (findRadioButtonInView(cardView, R.id.radioQris) != null) {
-                cardQris = cardView;
+        View parent = (View) child.getParent();
+        while (parent != null) {
+            if (parent instanceof CardView) {
+                return (CardView) parent;
             }
-        } else if (parent instanceof android.view.ViewGroup) {
-            android.view.ViewGroup group = (android.view.ViewGroup) parent;
-            for (int i = 0; i < group.getChildCount(); i++) {
-                findCardViewsRecursively(group.getChildAt(i));
-            }
-        }
-    }
-
-    private RadioButton findRadioButtonInView(View parent, int radioButtonId) {
-        if (parent instanceof RadioButton && parent.getId() == radioButtonId) {
-            return (RadioButton) parent;
-        } else if (parent instanceof android.view.ViewGroup) {
-            android.view.ViewGroup group = (android.view.ViewGroup) parent;
-            for (int i = 0; i < group.getChildCount(); i++) {
-                RadioButton result = findRadioButtonInView(group.getChildAt(i), radioButtonId);
-                if (result != null) {
-                    return result;
-                }
-            }
+            parent = (View) parent.getParent();
         }
         return null;
     }
 
     private void setupListeners() {
-        // Back button click listener
+
         backButton.setOnClickListener(v -> confirmPaymentMethod());
 
-        // Setup card click listeners untuk area yang lebih besar
-        setupCardClickListeners();
-
-        // Individual radio button click listeners
-        setupRadioButtonListeners();
-
-        // Note: Tidak menggunakan RadioGroup listener karena kita handle manual
-        // untuk memastikan hanya satu yang bisa dipilih
+        setupPaymentMethodListeners();
     }
 
-    private void setupCardClickListeners() {
-        View.OnClickListener cardClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Clear all radio buttons first
-                clearAllRadioButtons();
+    private void setupPaymentMethodListeners() {
+        // Setup untuk setiap payment method
+        setupSinglePaymentMethod(cardCash, radioCash, "Cash");
+        setupSinglePaymentMethod(cardOvo, radioOvo, "OVO");
+        setupSinglePaymentMethod(cardDana, radioDana, "Dana");
+        setupSinglePaymentMethod(cardGopay, radioGopay, "Gopay");
+        setupSinglePaymentMethod(cardQris, radioQris, "QRIS");
+    }
 
-                if (v == cardCash && radioCash != null) {
-                    radioCash.setChecked(true);
-                    selectedPaymentMethod = "Cash";
-                } else if (v == cardOvo && radioOvo != null) {
-                    radioOvo.setChecked(true);
-                    selectedPaymentMethod = "Ovo";
-                } else if (v == cardDana && radioDana != null) {
-                    radioDana.setChecked(true);
-                    selectedPaymentMethod = "Dana";
-                } else if (v == cardGopay && radioGopay != null) {
-                    radioGopay.setChecked(true);
-                    selectedPaymentMethod = "Gopay";
-                } else if (v == cardQris && radioQris != null) {
-                    radioQris.setChecked(true);
-                    selectedPaymentMethod = "QRIS";
-                }
-
-                // Show selection info
-                showPaymentMethodSelected(selectedPaymentMethod);
-                showPaymentMethodInfo(selectedPaymentMethod);
-            }
+    private void setupSinglePaymentMethod(CardView card, RadioButton radio, String methodName) {
+        View.OnClickListener clickListener = v -> {
+            selectPaymentMethod(methodName);
+            showPaymentMethodInfo(methodName);
         };
 
-        if (cardCash != null) cardCash.setOnClickListener(cardClickListener);
-        if (cardOvo != null) cardOvo.setOnClickListener(cardClickListener);
-        if (cardDana != null) cardDana.setOnClickListener(cardClickListener);
-        if (cardGopay != null) cardGopay.setOnClickListener(cardClickListener);
-        if (cardQris != null) cardQris.setOnClickListener(cardClickListener);
-    }
-
-    private void clearAllRadioButtons() {
-        if (radioCash != null) radioCash.setChecked(false);
-        if (radioOvo != null) radioOvo.setChecked(false);
-        if (radioDana != null) radioDana.setChecked(false);
-        if (radioGopay != null) radioGopay.setChecked(false);
-        if (radioQris != null) radioQris.setChecked(false);
-    }
-
-    private void setupRadioButtonListeners() {
-        View.OnClickListener radioClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Clear all radio buttons first
-                clearAllRadioButtons();
-
-                // Set the clicked one as checked
-                RadioButton clickedRadio = (RadioButton) v;
-                clickedRadio.setChecked(true);
-
-                // Update selected payment method
-                if (v == radioCash) {
-                    selectedPaymentMethod = "Cash";
-                } else if (v == radioOvo) {
-                    selectedPaymentMethod = "Ovo";
-                } else if (v == radioDana) {
-                    selectedPaymentMethod = "Dana";
-                } else if (v == radioGopay) {
-                    selectedPaymentMethod = "Gopay";
-                } else if (v == radioQris) {
-                    selectedPaymentMethod = "QRIS";
-                }
-
-                // Show selection info
-                showPaymentMethodSelected(selectedPaymentMethod);
-                showPaymentMethodInfo(selectedPaymentMethod);
-            }
-        };
-
-        if (radioCash != null) radioCash.setOnClickListener(radioClickListener);
-        if (radioOvo != null) radioOvo.setOnClickListener(radioClickListener);
-        if (radioDana != null) radioDana.setOnClickListener(radioClickListener);
-        if (radioGopay != null) radioGopay.setOnClickListener(radioClickListener);
-        if (radioQris != null) radioQris.setOnClickListener(radioClickListener);
-    }
-
-    private void setDefaultSelection() {
-        // Clear all selections first
-        clearAllRadioButtons();
-        if (paymentMethodGroup != null) {
-            paymentMethodGroup.clearCheck();
+        // Set listener radio button
+        if (card != null) {
+            card.setOnClickListener(clickListener);
         }
+        if (radio != null) {
+            radio.setOnClickListener(clickListener);
+        }
+    }
 
-        // Set default selection berdasarkan selectedPaymentMethod
-        switch (selectedPaymentMethod.toLowerCase()) {
+    private void selectPaymentMethod(String method) {
+
+        clearAllRadioButtons();
+
+        selectedPaymentMethod = method;
+
+        // Update radio button yang sesuai
+        switch (method.toLowerCase()) {
             case "cash":
                 if (radioCash != null) radioCash.setChecked(true);
                 break;
@@ -250,45 +155,25 @@ public class PaymentMethodActivity extends AppCompatActivity {
             case "qris":
                 if (radioQris != null) radioQris.setChecked(true);
                 break;
-            default:
-                if (radioOvo != null) {
-                    radioOvo.setChecked(true);
-                    selectedPaymentMethod = "Ovo";
-                }
-                break;
         }
     }
 
-    private void handlePaymentMethodSelection(int checkedId) {
-        String previousMethod = selectedPaymentMethod;
-
-        if (checkedId == R.id.radioCash) {
-            selectedPaymentMethod = "Cash";
-        } else if (checkedId == R.id.radioOvo) {
-            selectedPaymentMethod = "Ovo";
-        } else if (checkedId == R.id.radioDana) {
-            selectedPaymentMethod = "Dana";
-        } else if (checkedId == R.id.radioGopay) {
-            selectedPaymentMethod = "Gopay";
-        } else if (checkedId == R.id.radioQris) {
-            selectedPaymentMethod = "QRIS";
-        }
-
-        // Tampilkan informasi jika metode pembayaran berubah
-        if (!previousMethod.equals(selectedPaymentMethod)) {
-            showPaymentMethodSelected(selectedPaymentMethod);
-            showPaymentMethodInfo(selectedPaymentMethod);
-        }
+    private void clearAllRadioButtons() {
+        if (radioCash != null) radioCash.setChecked(false);
+        if (radioOvo != null) radioOvo.setChecked(false);
+        if (radioDana != null) radioDana.setChecked(false);
+        if (radioGopay != null) radioGopay.setChecked(false);
+        if (radioQris != null) radioQris.setChecked(false);
     }
 
-    private void showPaymentMethodSelected(String method) {
-        Toast.makeText(this, "Metode pembayaran dipilih: " + method, Toast.LENGTH_SHORT).show();
+    private void setDefaultSelection() {
+        selectPaymentMethod(selectedPaymentMethod);
     }
 
     private void showPaymentMethodInfo(String method) {
         String info = getPaymentMethodInfo(method);
         if (!info.isEmpty()) {
-            Toast.makeText(this, info, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -309,11 +194,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
         }
     }
 
-    public String getSelectedPaymentMethod() {
-        return selectedPaymentMethod;
-    }
-
-    public void confirmPaymentMethod() {
+    private void confirmPaymentMethod() {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("selected_payment_method", selectedPaymentMethod);
         resultIntent.putExtra("total_amount", totalAmount);
@@ -321,8 +202,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
         resultIntent.putExtra("restaurant_name", restaurantName);
 
         setResult(RESULT_OK, resultIntent);
-
-        Toast.makeText(this, "Metode pembayaran dikonfirmasi: " + selectedPaymentMethod, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Metode pembayaran: " + selectedPaymentMethod, Toast.LENGTH_SHORT).show();
         finish();
     }
 
@@ -330,5 +210,9 @@ public class PaymentMethodActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         confirmPaymentMethod();
+    }
+
+    public String getSelectedPaymentMethod() {
+        return selectedPaymentMethod;
     }
 }

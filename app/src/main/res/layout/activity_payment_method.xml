@@ -5,12 +5,13 @@
     android:id="@+id/main"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white">
+    android:background="@color/white">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@android:color/white"
+        android:background="@color/white"
         android:elevation="4dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp">
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Payment Method"
-            android:textColor="@android:color/background_dark"
+            android:textColor="@color/text_dark"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -56,6 +57,7 @@
                 app:cardBackgroundColor="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/llycash"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -76,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Cash"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <RadioButton
@@ -100,6 +102,7 @@
                 app:cardBackgroundColor="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/llyovo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -119,8 +122,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Ovo"
-                        android:textColor="@android:color/black"
+                        android:text="OVO"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <RadioButton
@@ -144,6 +147,7 @@
                 app:cardBackgroundColor="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/llydana"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -164,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Dana"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <RadioButton
@@ -188,6 +192,7 @@
                 app:cardBackgroundColor="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/llygopay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -208,7 +213,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Gopay"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <RadioButton
@@ -232,6 +237,7 @@
                 app:cardBackgroundColor="@android:color/white">
 
                 <LinearLayout
+                    android:id="@+id/llyqris"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -252,7 +258,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="QRIS"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <RadioButton

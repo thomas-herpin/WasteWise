@@ -5,16 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/white"
     tools:context=".PaymentBerhasilActivity">
-
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/btnViewOrder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="16dp">
+            android:paddingBottom="32dp">
 
             <!-- Payment Successful Title -->
             <TextView
@@ -30,10 +30,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Payment Successful!"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="60dp"
                 android:layout_gravity="center_horizontal" />
 
             <!-- Success Icon -->
@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thank you, your order is being prepared"
-                android:textColor="#666666"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_marginTop="40dp"
                 android:layout_gravity="center_horizontal" />
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="4dp">
 
@@ -93,7 +93,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Roti'O"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -102,7 +102,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Jl. Karya No.91, Sei Agul, Kec. Medan Bar., Kota Medan, Sumatera Utara 20235"
-                            android:textColor="#666666"
+                            android:textColor="@color/text_dark"
                             android:textSize="12sp"
                             android:layout_marginTop="4dp" />
 
@@ -132,7 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Transaction Detail"
-                        android:textColor="#000000"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="16dp" />
@@ -149,7 +149,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Transaction ID:"
-                            android:textColor="#666666"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
@@ -157,7 +157,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="133756"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -174,7 +174,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Order:"
-                            android:textColor="#666666"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
@@ -182,7 +182,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10 items Roti'O"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -199,7 +199,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Total:"
-                            android:textColor="#666666"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
@@ -207,7 +207,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rp 40.000"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -224,7 +224,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Payment Method:"
-                            android:textColor="#666666"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
@@ -232,7 +232,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="QRIS"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -248,7 +248,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Date&amp;Time:"
-                            android:textColor="#666666"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
@@ -256,7 +256,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="28/09/2025 20:30"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -265,25 +265,22 @@
 
             </androidx.cardview.widget.CardView>
 
+            <!-- View My Order Button - Sekarang di dalam ScrollView -->
+            <Button
+                android:id="@+id/btnViewOrder"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/button_green_rounded"
+                android:text="View My Order"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:elevation="8dp" />
+
         </LinearLayout>
 
     </ScrollView>
-
-    <!-- View My Order Button - Fixed di bawah -->
-    <Button
-        android:id="@+id/btnViewOrder"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/button_green_rounded"
-        android:text="View My Order"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

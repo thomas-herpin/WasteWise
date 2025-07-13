@@ -25,10 +25,10 @@ public class OrderSummaryActivity extends AppCompatActivity {
     private TextView seeAllButton;
     private TextView paymentMethodAmount;
     private LinearLayout paymentMethodIcon;
-    private TextView paymentMethodText;
+    private LinearLayout paymentInfoLayout;
 
-    private String currentPaymentMethod = "Ovo"; // Default payment method
-    private String currentPaymentAmount = "Rp300.000"; // Default amount
+    private String currentPaymentMethod = "Ovo";
+    private String currentPaymentAmount = "Rp300.000";
 
     private static final int PAYMENT_METHOD_REQUEST_CODE = 1001;
 
@@ -54,63 +54,17 @@ public class OrderSummaryActivity extends AppCompatActivity {
         btnOrderNow = findViewById(R.id.btnOrderNow);
         navView = findViewById(R.id.nav_view);
 
-        // Temukan TextView "See all" berdasarkan XML yang ada
-        seeAllButton = findSeeAllTextView();
-
-        // Temukan TextView untuk amount payment method
-        paymentMethodAmount = findPaymentAmountTextView();
-
-        // Inisialisasi payment method icon dan text (akan dibuat dinamis)
-        findPaymentMethodViews();
+        findPaymentInformationViews();
     }
 
-    private void findPaymentMethodViews() {
-        // Mencari LinearLayout yang berisi icon payment method dan TextView amount
+    private void findPaymentInformationViews() {
         View scrollView = findViewById(R.id.scroll_view);
         if (scrollView != null) {
-            // Cari LinearLayout dengan background "@drawable/ovo"
-            paymentMethodIcon = findPaymentMethodIcon(scrollView);
-
-            // Cari TextView dengan text yang dimulai dengan "Rp"
-            paymentMethodAmount = findViewWithTextStarting(scrollView, "Rp");
+            seeAllButton = findViewWithText(scrollView, "See all");
+            paymentMethodAmount = findViewById(R.id.tvsaldo);
+            paymentMethodIcon = findViewById(R.id.llygambarsaldo);
+            paymentInfoLayout = findViewById(R.id.llysaldo);
         }
-    }
-
-    private LinearLayout findPaymentMethodIcon(View parent) {
-        if (parent instanceof LinearLayout) {
-            LinearLayout layout = (LinearLayout) parent;
-            // Cek apakah ini LinearLayout untuk payment method icon
-            if (layout.getLayoutParams() != null &&
-                    layout.getLayoutParams().width == 96 && // 32dp converted to pixels approximately
-                    layout.getLayoutParams().height == 96) {
-                return layout;
-            }
-        } else if (parent instanceof android.view.ViewGroup) {
-            android.view.ViewGroup group = (android.view.ViewGroup) parent;
-            for (int i = 0; i < group.getChildCount(); i++) {
-                LinearLayout result = findPaymentMethodIcon(group.getChildAt(i));
-                if (result != null) {
-                    return result;
-                }
-            }
-        }
-        return null;
-    }
-
-    private TextView findSeeAllTextView() {
-        View paymentSection = findViewById(R.id.scroll_view);
-        if (paymentSection != null) {
-            return findViewWithText(paymentSection, "See all");
-        }
-        return null;
-    }
-
-    private TextView findPaymentAmountTextView() {
-        View paymentSection = findViewById(R.id.scroll_view);
-        if (paymentSection != null) {
-            return findViewWithTextStarting(paymentSection, "Rp");
-        }
-        return null;
     }
 
     private TextView findViewWithText(View parent, String text) {
@@ -131,55 +85,29 @@ public class OrderSummaryActivity extends AppCompatActivity {
         return null;
     }
 
-    private TextView findViewWithTextStarting(View parent, String startText) {
-        if (parent instanceof TextView) {
-            TextView textView = (TextView) parent;
-            String text = textView.getText().toString();
-            if (text.startsWith(startText) && text.contains(".")) {
-                return textView;
-            }
-        } else if (parent instanceof android.view.ViewGroup) {
-            android.view.ViewGroup group = (android.view.ViewGroup) parent;
-            for (int i = 0; i < group.getChildCount(); i++) {
-                TextView result = findViewWithTextStarting(group.getChildAt(i), startText);
-                if (result != null) {
-                    return result;
-                }
-            }
-        }
-        return null;
-    }
-
     private void setupClickListeners() {
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        btnBack.setOnClickListener(v -> onBackPressed());
+        btnOrderNow.setOnClickListener(v -> handleOrderNow());
 
-        btnOrderNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handleOrderNow();
-            }
-        });
-
-        // Setup listener untuk tombol "See all"
         if (seeAllButton != null) {
-            seeAllButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openPaymentMethodActivity();
-                }
-            });
+            seeAllButton.setOnClickListener(v -> openPaymentMethodActivity());
+        }
+
+        if (paymentInfoLayout != null) {
+            paymentInfoLayout.setOnClickListener(v -> openPaymentMethodActivity());
+        }
+
+        if (paymentMethodAmount != null) {
+            paymentMethodAmount.setOnClickListener(v -> openPaymentMethodActivity());
+        }
+
+        if (paymentMethodIcon != null) {
+            paymentMethodIcon.setOnClickListener(v -> openPaymentMethodActivity());
         }
     }
 
     private void openPaymentMethodActivity() {
         Intent intent = new Intent(OrderSummaryActivity.this, PaymentMethodActivity.class);
-
-        // Kirim data yang diperlukan
         intent.putExtra("total_amount", "Rp43.000");
         intent.putExtra("order_id", "ORDER_123");
         intent.putExtra("restaurant_name", "Roti'O");
@@ -205,13 +133,11 @@ public class OrderSummaryActivity extends AppCompatActivity {
     }
 
     private void updatePaymentMethodDisplay(String paymentMethod) {
-        // Update icon background berdasarkan payment method
         if (paymentMethodIcon != null) {
             int backgroundResource = getPaymentMethodBackground(paymentMethod);
             paymentMethodIcon.setBackgroundResource(backgroundResource);
         }
 
-        // Update amount berdasarkan payment method
         if (paymentMethodAmount != null) {
             String amount = getPaymentMethodAmount(paymentMethod);
             paymentMethodAmount.setText(amount);
@@ -237,10 +163,9 @@ public class OrderSummaryActivity extends AppCompatActivity {
     }
 
     private String getPaymentMethodAmount(String paymentMethod) {
-        // Simulasi saldo untuk setiap payment method
         switch (paymentMethod.toLowerCase()) {
             case "cash":
-                return "Tunai";
+                return "Cash";
             case "ovo":
                 return "Rp300.000";
             case "dana":
@@ -248,7 +173,7 @@ public class OrderSummaryActivity extends AppCompatActivity {
             case "gopay":
                 return "Rp250.000";
             case "qris":
-                return "Tersedia";
+                return "QRIS";
             default:
                 return "Rp300.000";
         }
@@ -257,8 +182,6 @@ public class OrderSummaryActivity extends AppCompatActivity {
     private void setupBottomNavigation() {
         if (navView != null) {
             navView.setOnItemSelectedListener(item -> {
-                int itemId = item.getItemId();
-                // Handle navigation
                 return false;
             });
         }
@@ -268,8 +191,10 @@ public class OrderSummaryActivity extends AppCompatActivity {
         // Validasi payment method
         if (currentPaymentMethod.equals("Cash")) {
             Toast.makeText(this, "Memproses pesanan dengan pembayaran tunai...", Toast.LENGTH_SHORT).show();
+        } else if (currentPaymentMethod.equalsIgnoreCase("qris")) {
+            Toast.makeText(this, "Memproses pesanan dengan QRIS...", Toast.LENGTH_SHORT).show();
         } else {
-            // Cek apakah saldo mencukupi
+            // mengecek apakah saldo mencukupi untuk e-wallet
             if (isBalanceSufficient()) {
                 Toast.makeText(this, "Memproses pesanan dengan " + currentPaymentMethod + "...", Toast.LENGTH_SHORT).show();
             } else {
@@ -277,12 +202,10 @@ public class OrderSummaryActivity extends AppCompatActivity {
                 return;
             }
         }
-
         processOrder();
     }
 
     private boolean isBalanceSufficient() {
-        // Simulasi pengecekan saldo
         int totalAmount = 43000; // Rp43.000
 
         switch (currentPaymentMethod.toLowerCase()) {
@@ -293,7 +216,8 @@ public class OrderSummaryActivity extends AppCompatActivity {
             case "gopay":
                 return 250000 >= totalAmount;
             case "qris":
-                return true; // QRIS selalu tersedia
+            case "cash":
+                return true;
             default:
                 return true;
         }
@@ -303,13 +227,10 @@ public class OrderSummaryActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 Thread.sleep(2000);
-
                 runOnUiThread(() -> {
-                    Toast.makeText(OrderSummaryActivity.this,
-                            "Pesanan berhasil dibuat dengan " + currentPaymentMethod + "!", Toast.LENGTH_LONG).show();
-                    finish();
+                    // Navigasi berdasarkan metode pembayaran
+                    navigateToPaymentResult();
                 });
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 runOnUiThread(() -> {
@@ -320,17 +241,42 @@ public class OrderSummaryActivity extends AppCompatActivity {
         }).start();
     }
 
+    private void navigateToPaymentResult() {
+        Intent intent;
+
+        // Jika metode pembayaran adalah QRIS, arahkan ke QrisPaymentActivity
+        if (currentPaymentMethod.equalsIgnoreCase("qris")) {
+            intent = new Intent(OrderSummaryActivity.this, QrisPaymentActivity.class);
+            intent.putExtra("transaction_id", "133756");
+            intent.putExtra("store_name", "Roti O");
+            intent.putExtra("store_location", "Roti O - Karya");
+            intent.putExtra("pickup_time", "10.00");
+            intent.putExtra("order_date", "Sabtu, 28 Sep 2025");
+            intent.putExtra("payment_method", currentPaymentMethod);
+            intent.putExtra("total_amount", "Rp43.000");
+            Toast.makeText(this, "Silakan lakukan pembayaran melalui QRIS", Toast.LENGTH_LONG).show();
+        } else {
+            // Untuk metode pembayaran lainnya, arahkan ke PaymentBerhasilActivity
+            intent = new Intent(OrderSummaryActivity.this, PaymentBerhasilActivity.class);
+            intent.putExtra("transaction_id", "133756");
+            intent.putExtra("store_name", "Roti O");
+            intent.putExtra("store_location", "Roti O - Karya");
+            intent.putExtra("pickup_time", "10.00");
+            intent.putExtra("order_date", "Sabtu, 28 Sep 2025");
+            intent.putExtra("payment_method", currentPaymentMethod);
+            intent.putExtra("total_amount", "Rp43.000");
+            Toast.makeText(this, "Pesanan berhasil dibuat dengan " + currentPaymentMethod + "!", Toast.LENGTH_LONG).show();
+        }
+
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
-    public void updateOrderInfo(String restaurantName, String address,
-                                String totalAmount, String itemCount) {
-        // Implementation untuk update order info
-    }
-
-    // Getter untuk current payment method
     public String getCurrentPaymentMethod() {
         return currentPaymentMethod;
     }

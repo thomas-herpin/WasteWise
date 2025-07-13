@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res/auto"
     android:layout_width="match_parent"
     android:id="@+id/main"
     android:layout_height="match_parent"
@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:background="@android:color/white">
+        android:background="@color/white">
 
         <TextView
-            android:id="@+id/tv_header"
+            android:id="@+id/tvHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Activity"
-            android:textColor="@android:color/black"
+            android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_centerVertical="true" />
@@ -31,20 +31,12 @@
             android:layout_centerVertical="true">
 
             <TextView
+                android:id="@+id/tvNotificationIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="350dp"
                 android:text="🔔"
                 android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:text="●"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="8sp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true" />
 
         </RelativeLayout>
 
@@ -62,13 +54,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Order Status Card - CLICKABLE -->
             <LinearLayout
+                android:id="@+id/cardOrderStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/dashed_border_background"
                 android:padding="16dp"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="24dp"
+                android:clickable="true"
+                android:focusable="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -76,20 +72,21 @@
                     android:layout_marginBottom="16dp">
 
                     <TextView
-                        android:id="@+id/tv_roti_title"
+                        android:id="@+id/tvStoreName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Roti O"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvOrderStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Need Payment"
                         android:background="@drawable/button_red_rounded"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/white"
                         android:textSize="12sp"
                         android:paddingHorizontal="16dp"
                         android:paddingVertical="6dp"
@@ -113,14 +110,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Saturday,"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tvOrderDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="28 Sep"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -128,7 +126,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2025"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -143,14 +141,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Address"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tvStoreLocation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Roti O - Karya"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -166,21 +165,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Pick Up"
-                            android:textColor="@android:color/darker_gray"
+                            android:paddingLeft="50dp"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Before"
-                            android:textColor="@android:color/darker_gray"
+                            android:paddingLeft="50dp"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tvPickupTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10.00"
-                            android:textColor="@android:color/black"
+                            android:paddingLeft="50dp"
+                            android:textColor="@color/text_dark"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -188,7 +191,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="AM"
-                            android:textColor="@android:color/black"
+                            android:paddingLeft="75dp"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -198,25 +202,27 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@android:color/darker_gray"
+                    android:background="@color/text_dark"
                     android:layout_marginVertical="16dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Transaction ID"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/text_dark"
                     android:textSize="14sp"
                     android:layout_marginBottom="8dp" />
 
                 <TextView
+                    android:id="@+id/tv_transaction_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1 3 3 7 5 6"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:letterSpacing="0.2" />
+
 
             </LinearLayout>
 
@@ -231,7 +237,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Recent"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -249,17 +255,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="16dp"
-                    android:background="@android:color/white"
+                    android:background="@color/white"
                     android:layout_marginBottom="8dp">
 
-                    <TextView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/white"
-                        android:background="@drawable/logorotio"
-                        android:gravity="center"
+                    <ImageView
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:src="@drawable/logorotio"
                         android:layout_marginEnd="16dp" />
 
                     <LinearLayout
@@ -272,7 +274,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Roti O - Medan fair"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -280,21 +282,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10 item"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="25 Sep 2025, 08.00 AM"
-                            android:textColor="@android:color/tertiary_text_dark"
+                            android:textColor="@color/text_dark"
                             android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Review →"
-                            android:textColor="@android:color/holo_green_dark"
+                            android:textColor="@color/primary_green"
                             android:textSize="14sp"
                             android:layout_marginTop="4dp" />
 
@@ -304,7 +306,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp 40.000"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_gravity="center_vertical" />
@@ -317,16 +319,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="16dp"
-                    android:background="@android:color/white"
+                    android:background="@color/white"
                     android:layout_marginBottom="8dp">
 
-                    <TextView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:textSize="16sp"
-                        android:textColor="@android:color/white"
-                        android:background="@drawable/logorotio"
-                        android:gravity="center"
+                    <ImageView
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:src="@drawable/logorotio"
                         android:layout_marginEnd="16dp" />
 
                     <LinearLayout
@@ -339,7 +338,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Roti O - Medan fair"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -347,21 +346,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10 item"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="25 Sep 2025, 08.00 AM"
-                            android:textColor="@android:color/tertiary_text_dark"
+                            android:textColor="@color/text_dark"
                             android:textSize="12sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Review →"
-                            android:textColor="@android:color/holo_green_dark"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp"
                             android:layout_marginTop="4dp" />
 
@@ -371,7 +370,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp 40.000"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_gravity="center_vertical" />
@@ -384,14 +383,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="16dp"
-                    android:background="@android:color/white"
+                    android:background="@color/white"
                     android:layout_marginBottom="8dp">
 
-                    <TextView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="@drawable/logorotio"
-                        android:gravity="center"
+                    <ImageView
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:src="@drawable/logorotio"
                         android:layout_marginEnd="16dp" />
 
                     <LinearLayout
@@ -404,7 +402,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Roti O - Medan fair"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -412,14 +410,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10 item"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="25 Sep 2025, 08.00 AM"
-                            android:textColor="@android:color/tertiary_text_dark"
+                            android:textColor="@color/text_dark"
                             android:textSize="12sp" />
 
                         <TextView
@@ -436,7 +434,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp 40.000"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_gravity="center_vertical" />
@@ -449,14 +447,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="16dp"
-                    android:background="@android:color/white"
+                    android:background="@color/white"
                     android:layout_marginBottom="8dp">
 
-                    <TextView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="@drawable/logorotio"
-                        android:gravity="center"
+                    <ImageView
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:src="@drawable/logorotio"
                         android:layout_marginEnd="16dp" />
 
                     <LinearLayout
@@ -469,7 +466,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Roti O - Medan fair"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -477,14 +474,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10 item"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/text_dark"
                             android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="25 Sep 2025, 08.00 AM"
-                            android:textColor="@android:color/tertiary_text_dark"
+                            android:textColor="@color/text_dark"
                             android:textSize="12sp" />
 
                         <TextView
@@ -501,7 +498,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rp 40.000"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_gravity="center_vertical" />
