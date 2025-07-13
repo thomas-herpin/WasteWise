@@ -360,7 +360,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Review →"
-                            android:textColor="@color/text_dark"
+                            android:textColor="@color/primary_green"
                             android:textSize="14sp"
                             android:layout_marginTop="4dp" />
 
@@ -424,7 +424,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Review →"
-                            android:textColor="@android:color/holo_green_dark"
+                            android:textColor="@color/primary_green"
                             android:textSize="14sp"
                             android:layout_marginTop="4dp" />
 
@@ -488,7 +488,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Review →"
-                            android:textColor="@android:color/holo_green_dark"
+                            android:textColor="@color/primary_green"
                             android:textSize="14sp"
                             android:layout_marginTop="4dp" />
 
