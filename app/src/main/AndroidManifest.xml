@@ -13,10 +13,13 @@
         android:theme="@style/Theme.WasteWise"
         tools:targetApi="31">
         <activity
+            android:name=".ProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileSellerActivity"
             android:exported="false" />
         <activity
-            android:name=".ProductActivity"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".SettingActivity"
@@ -31,7 +34,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".PersonalDetailSellerActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.WasteWise">

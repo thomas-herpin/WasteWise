@@ -39,14 +39,16 @@ public class ProductActivity extends AppCompatActivity {
 
         Product product1 = new Product("10 Items", "McDonalds - Mong...", 50000, R.drawable.mcdonalds);
         Product product2 = new Product("10 Items", "Roti'o - Medan Fair", 50000, R.drawable.rotio);
-        Product product3 = new Product("5 Items", "HokBen - Center Point", 50000, R.drawable.hokben);
+        Product product3 = new Product("5 Items", "HokBen - Center Point", 40000, R.drawable.hokben);
+        Product product4 = new Product("3 Items", "Starbucks - Adam Malik", 20000, R.drawable.starbucks);
 
         produkArrayList.add(product1);
         produkArrayList.add(product2);
         produkArrayList.add(product3);
+        produkArrayList.add(product4);
 
         adapter = new ProductAdapter(this,produkArrayList);
-        rvProduk.setLayoutManager(new GridLayoutManager(this, 2)); // 2 kolom
+        rvProduk.setLayoutManager(new GridLayoutManager(this, 2));
         rvProduk.setAdapter(adapter);
     }
 }
