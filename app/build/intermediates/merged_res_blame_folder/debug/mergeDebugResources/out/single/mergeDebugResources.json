@@ -1,0 +1,222 @@
+[
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_rdb_normal.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/rdb_normal.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_magnifier.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/magnifier.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_panahback.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/panahback.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_settings.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/settings.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_language.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/language.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/layout_layout_produk_home.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/layout/layout_produk_home.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_privacypolicy.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/privacypolicy.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_rdb_checked.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/rdb_checked.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_ic_launcher_background.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/layout_activity_personal_detail.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/layout/activity_personal_detail.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_notif.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/notif.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_hokben.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/hokben.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/layout_activity_personal_detail_seller.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/layout/activity_personal_detail_seller.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_profile.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/profile.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_flag_indo.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/flag_indo.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/layout_layout_ads.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/layout/layout_ads.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/layout_activity_product.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/layout/activity_product.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_logout.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/logout.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_button_green_rounded.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/button_green_rounded.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_rdb_selector.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/rdb_selector.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_aboutus.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/aboutus.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_profilepicture.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/profilepicture.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_notification.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/notification.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_myoutlet.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/myoutlet.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_mcdonalds.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/mcdonalds.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_edt_background.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/edt_background.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_starbucks.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/starbucks.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_button_green.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/button_green.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/layout_activity_profile_seller.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/layout/activity_profile_seller.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_btnpanah.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/btnpanah.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_wallet.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/wallet.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/layout_activity_setting.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/layout/activity_setting.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/layout_activity_profile.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_bank.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/bank.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/xml_data_extraction_rules.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/layout_activity_home.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/layout/activity_home.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/layout_layout_produk.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/layout/layout_produk.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/xml_backup_rules.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_rotio.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/rotio.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_rdb_txt_color.xml.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/rdb_txt_color.xml"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_contactus.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/contactus.png"
+    },
+    {
+        "merged": "edu.uph.m23si2.wastewise.app-debug-61:/drawable_faq.png.flat",
+        "source": "edu.uph.m23si2.wastewise.app-main-63:/drawable/faq.png"
+    }
+]
