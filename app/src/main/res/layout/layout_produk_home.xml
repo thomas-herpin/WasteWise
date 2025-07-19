@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+    android:layout_height="220dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp"
+    android:background="@android:color/white"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <ImageView
+            android:id="@+id/imvProduk"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/mcdonalds" />
+
+        <TextView
+            android:id="@+id/txvJumlahItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 Items"
+            android:textSize="7.5pt"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txvAlamatOutlet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="McDonald's - Mon..."
+            android:textSize="7pt"
+            android:textColor="#666666"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/txvHarga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp 50.000"
+            android:textSize="7.5pt"
+            android:textColor="@color/black"
+            android:layout_marginTop="4dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
