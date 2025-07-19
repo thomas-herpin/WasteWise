@@ -44,19 +44,19 @@
                     android:layout_marginBottom="5dp"
                     android:text="Roti Bun"
                     android:textColor="@color/black"
-                    android:textSize="6pt"
+                    android:textSize="8pt"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txvQuantity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="6pt"
                     android:layout_marginLeft="20dp"
                     android:text="3 pcs" />
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,56 +4,69 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wastewise.R;
 import com.example.wastewise.model.ProductDetail;
 
 import java.util.ArrayList;
 
-public class ProductDetailAdapter extends RecyclerView.Adapter<ProductDetailAdapter.ProductDetailViewHolder> {
+public class ProductDetailAdapter extends BaseAdapter {
 
-    Context context;
-    ArrayList<ProductDetail> productDetailList;
+    private Context context;
+    private ArrayList<ProductDetail> productDetailList;
+    private LayoutInflater inflater;
 
     public ProductDetailAdapter(Context context, ArrayList<ProductDetail> productDetailList) {
         this.context = context;
         this.productDetailList = productDetailList;
-    }
-
-    public static class ProductDetailViewHolder extends RecyclerView.ViewHolder {
-        ImageView imvMakanan;
-        TextView txvNamaMakanan, txvQuantity;
-
-        public ProductDetailViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imvMakanan = itemView.findViewById(R.id.imvMakanan);
-            txvNamaMakanan = itemView.findViewById(R.id.txvNamaMakanan);
-            txvQuantity = itemView.findViewById(R.id.txvQuantity);
-        }
-    }
-
-    @NonNull
-    @Override
-    public ProductDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_detail_product, parent, false);
-        return new ProductDetailViewHolder(view);
+        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductDetailViewHolder holder, int position) {
-        ProductDetail productDetail = productDetailList.get(position);
-        holder.imvMakanan.setImageResource(productDetail.getImageResId());
-        holder.txvNamaMakanan.setText(productDetail.getNamaMakanan());
-        holder.txvQuantity.setText(productDetail.getQuantity());
-    }
-
-    @Override
-    public int getItemCount() {
+    public int getCount() {
         return productDetailList.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return productDetailList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.layout_detail_product, parent, false);
+            holder = new ViewHolder();
+            holder.imvMakanan = convertView.findViewById(R.id.imvMakanan);
+            holder.txvNamaMakanan = convertView.findViewById(R.id.txvNamaMakanan);
+            holder.txvQuantity = convertView.findViewById(R.id.txvQuantity);
+
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        ProductDetail product = productDetailList.get(position);
+        holder.imvMakanan.setImageResource(product.getImvMakanan());
+        holder.txvNamaMakanan.setText(product.getNamaMakanan());
+        holder.txvQuantity.setText(product.getQuantity());
+
+        return convertView;
+    }
+
+    static class ViewHolder {
+        ImageView imvMakanan;
+        TextView txvNamaMakanan;
+        TextView txvQuantity;
     }
 }
