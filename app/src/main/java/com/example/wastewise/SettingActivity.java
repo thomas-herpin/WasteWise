@@ -1,5 +1,6 @@
 package com.example.wastewise;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.wastewise.ui.account.AccountFragment;
 
 public class SettingActivity extends AppCompatActivity {
     ImageView btnBack;
@@ -66,7 +69,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     public void toProfile(){
-        Intent intent = new Intent(this, ProfileActivity.class);
+        Intent intent = new Intent(this, AccountFragment.class);
         startActivity(intent);
     }
 
@@ -84,4 +87,5 @@ public class SettingActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PrivacyPolicyActivity.class);
         startActivity(intent);
     }
+
 }

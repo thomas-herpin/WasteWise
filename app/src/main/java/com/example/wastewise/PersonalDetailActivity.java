@@ -11,6 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.wastewise.ui.account.AccountFragment;
+
 public class PersonalDetailActivity extends AppCompatActivity {
 
     ImageView btnBack;
@@ -41,7 +43,7 @@ public class PersonalDetailActivity extends AppCompatActivity {
     }
 
     public void toProfile(){
-        Intent intent = new Intent(this, ProfileActivity.class);
+        Intent intent = new Intent(this, AccountFragment.class);
         startActivity(intent);
     }
 }

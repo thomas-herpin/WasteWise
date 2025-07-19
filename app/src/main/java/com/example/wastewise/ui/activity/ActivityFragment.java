@@ -4,34 +4,31 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.wastewise.databinding.FragmentActivityBinding;
+import com.example.wastewise.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ActivityFragment extends Fragment{
-    private FragmentActivityBinding binding;
+public class ActivityFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ActivityViewModel homeViewModel =
-                new ViewModelProvider(this).get(ActivityViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_activity, container, false);
 
-        binding = FragmentActivityBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View mainLayout = root.findViewById(R.id.main);
+        if (mainLayout != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(mainLayout, (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
+        }
 
-        final TextView textView = binding.textActivity;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 }
-

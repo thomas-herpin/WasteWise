@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         if (isValid(email, password)) {
             Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
