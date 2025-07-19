@@ -11,7 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class PrivacyPolicyActivity extends AppCompatActivity {
+import com.example.wastewise.ui.account.AccountFragment;
+
+public class FaqsActivity extends AppCompatActivity {
 
     ImageView btnBack;
 
@@ -19,7 +21,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_privacy_policy);
+        setContentView(R.layout.activity_faqs);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -30,7 +32,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toSettings();
+                toProfile();
             }
         });
     }
@@ -39,8 +41,8 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
     }
 
-    public void toSettings(){
-        Intent intent = new Intent(this, SettingActivity.class);
+    public void toProfile(){
+        Intent intent = new Intent(this, AccountFragment.class);
         startActivity(intent);
     }
 }

@@ -10,22 +10,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 import com.example.wastewise.R;
 import com.example.wastewise.model.Product;
+
+import java.util.ArrayList;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     Context context;
     ArrayList<Product> productArrayList;
+    private OnItemClickListener listener;
+    public interface OnItemClickListener {
+        void onItemClick(Product product);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public ProductAdapter(Context context, ArrayList<Product> productArrayList) {
         this.context = context;
         this.productArrayList = productArrayList;
     }
 
-    public static class ProductViewHolder extends RecyclerView.ViewHolder {
+    public class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView imvProduk;
         TextView txvJumlahItem, txvAlamatOutlet, txvHarga;
 
@@ -35,6 +43,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             txvJumlahItem = itemView.findViewById(R.id.txvJumlahItem);
             txvAlamatOutlet = itemView.findViewById(R.id.txvAlamatOutlet);
             txvHarga = itemView.findViewById(R.id.txvHarga);
+
+            // Tambahan: Deteksi klik item
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(productArrayList.get(position));
+                        }
+                    }
+                }
+            });
         }
     }
 

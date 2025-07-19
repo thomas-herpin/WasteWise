@@ -13,6 +13,33 @@
         android:theme="@style/Theme.WasteWise"
         tools:targetApi="31">
         <activity
+            android:name=".FaqsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BeforePaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PickUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AfterPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentBerhasilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QrisPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentMethodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderSummaryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".LandingPageActivity"
             android:exported="false" />
         <activity

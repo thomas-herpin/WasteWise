@@ -31,7 +31,7 @@ public class AboutUsActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toProfile();
+                toSettings();
             }
         });
     }
@@ -40,7 +40,7 @@ public class AboutUsActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
     }
 
-    public void toProfile(){
+    public void toSettings(){
         Intent intent = new Intent(this, SettingActivity.class);
         startActivity(intent);
     }

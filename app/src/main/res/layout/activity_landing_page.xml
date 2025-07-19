@@ -81,7 +81,9 @@
                     android:background="@drawable/button_green_rounded"
                     android:fontFamily="sans-serif"
                     android:text="Daftar Sekarang"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="7pt"
+                    android:textAllCaps="false"/>
             </LinearLayout>
 
             <LinearLayout
@@ -99,7 +101,9 @@
                     android:text="Sudah punya akun? Masuk"
                     android:fontFamily="sans-serif"
                     android:background="@drawable/button_green_rounded"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="7pt"
+                    android:textAllCaps="false"/>
             </LinearLayout>
 
             <LinearLayout

@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.graphics.Insets;
 
+import com.example.wastewise.FaqsActivity;
 import com.example.wastewise.PersonalDetailActivity;
 import com.example.wastewise.R;
 import com.example.wastewise.SettingActivity;
@@ -61,6 +62,11 @@ public class AccountFragment extends Fragment {
 
         btnSettings.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), SettingActivity.class);
+            startActivity(intent);
+        });
+
+        btnFAQs.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), FaqsActivity.class);
             startActivity(intent);
         });
 
