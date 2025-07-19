@@ -11,46 +11,34 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class DashboardActivity extends AppCompatActivity {
+import com.example.wastewise.ui.account.AccountFragment;
 
-    Button btnManageProduct, btnCreateOffer;
+public class CreateOfferActivity extends AppCompatActivity {
+    Button btnAcceptOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_create_offer);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        btnManageProduct = findViewById(R.id.btnManageProduct);
-        btnCreateOffer = findViewById(R.id.btnCreateOffer);
+        btnAcceptOrder = findViewById(R.id.btnAcceptOrder);
 
-        btnManageProduct.setOnClickListener(new View.OnClickListener() {
+        btnAcceptOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toManageProduct();
-            }
-        });
-
-        btnCreateOffer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toCreateOffer();
+                toProduct();
             }
         });
     }
 
-    public void toManageProduct(){
+    private void toProduct(){
         Intent intent = new Intent(this, ProductSellerActivity.class);
-        startActivity(intent);
-    }
-
-    public void toCreateOffer(){
-        Intent intent = new Intent(this, CreateOfferActivity.class);
         startActivity(intent);
     }
 }
