@@ -44,7 +44,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             txvAlamatOutlet = itemView.findViewById(R.id.txvAlamatOutlet);
             txvHarga = itemView.findViewById(R.id.txvHarga);
 
-            // Tambahan: Deteksi klik item
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

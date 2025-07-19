@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DashboardAdmin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F7FAF7"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Dashboard"
+            android:textColor="@color/black"
+            android:textSize="12pt"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30px"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="500px"
+                android:layout_height="400px"
+                android:background="@drawable/button_light_green"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Total Sales"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="13pt" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20px"
+                    android:text="$1.565"
+                    android:textColor="@color/black"
+                    android:textSize="16pt"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="400px"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/button_light_green"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Sold Item"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="13pt" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20px"
+                    android:text="20"
+                    android:textColor="@color/black"
+                    android:textSize="16pt"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_light_green"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Waste Reduction"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14pt" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20px"
+                android:text="70%"
+                android:textColor="@color/black"
+                android:textSize="16pt"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Quick Action"
+            android:textColor="@color/black"
+            android:textSize="12pt"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnManageProduct"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_green_rounded"
+                android:text="Manage Product"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="8pt"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/btnCreateOffer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/button_green_rounded"
+                android:text="Create Offer"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="8pt"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView94"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Waste Production Progress"
+            android:textColor="@color/black"
+            android:textSize="12pt"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Current Progress"
+            android:textColor="@color/black"
+            android:textSize="10pt" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50px"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/button_light_green"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="800px"
+                android:layout_height="50px"
+                android:background="@drawable/button_green_rounded" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView96"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Goal : 80%"
+            android:textColor="@color/merahcoklat"
+            android:textSize="10pt" />
+
+        <TextView
+            android:id="@+id/textView97"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Monthly Waste Production"
+            android:textColor="@color/black"
+            android:textSize="12pt"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView98"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="45%"
+            android:textColor="@color/black"
+            android:textSize="10pt"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView99"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Goal : 80%"
+            android:textColor="@color/merahcoklat"
+            android:textSize="10pt" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="1000px"
+            android:layout_height="650px"
+            android:layout_gravity="center"
+            android:background="@drawable/grafik" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

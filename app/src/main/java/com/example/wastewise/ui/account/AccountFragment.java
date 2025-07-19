@@ -16,10 +16,10 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.graphics.Insets;
 
 import com.example.wastewise.FaqsActivity;
+import com.example.wastewise.LandingPageSellerActivity;
 import com.example.wastewise.PersonalDetailActivity;
 import com.example.wastewise.R;
 import com.example.wastewise.SettingActivity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AccountFragment extends Fragment {
 
@@ -62,6 +62,11 @@ public class AccountFragment extends Fragment {
 
         btnSettings.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), SettingActivity.class);
+            startActivity(intent);
+        });
+
+        btnMyOutlet.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), LandingPageSellerActivity.class);
             startActivity(intent);
         });
 
