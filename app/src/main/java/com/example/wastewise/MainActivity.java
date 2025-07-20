@@ -3,7 +3,6 @@ package com.example.wastewise;
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         userType = getUserType();
 
         if (userType == null) {
-            Log.e("MainActivity", "User type is null. Make sure 'user_type' is passed in the intent.");
+            Log.e("MainActivity", "User type kosong.");
             userType = "buyer";
         }
 

@@ -47,7 +47,7 @@
 
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/edtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
