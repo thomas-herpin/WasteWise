@@ -14,6 +14,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.wastewise.model.User;
+
+import io.realm.Realm;
+
 public class LoginActivity extends AppCompatActivity {
     TextView txvSignUp;
     Button btnLogin;
@@ -61,17 +65,17 @@ public class LoginActivity extends AppCompatActivity {
         String password = edtPassword.getText().toString().trim();
 
         if (email.isEmpty()) {
-            edtEmail.setError("Email is required");
+            edtEmail.setError("Email belum terisi.");
             return;
         }
 
         if (password.isEmpty()) {
-            edtPassword.setError("Password is required");
+            edtPassword.setError("Password belum terisi.");
             return;
         }
 
         if (isValid(email, password)) {
-            Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("user_type", "buyer");
@@ -79,11 +83,18 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email atau password tidak valid.", Toast.LENGTH_SHORT).show();
         }
     }
 
     private boolean isValid(String email, String password) {
-        return !email.isEmpty() && !password.isEmpty();
+        Realm realm = Realm.getDefaultInstance();
+        User user = realm.where(User.class)
+                .equalTo("email", email)
+                .equalTo("password", password)
+                .findFirst();
+        realm.close();
+        return user != null;
     }
+
 }
