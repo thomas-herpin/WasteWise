@@ -52,7 +52,7 @@ public class OrderSummaryActivity extends AppCompatActivity {
     private void initializeViews() {
         btnBack = findViewById(R.id.btnBack);
         btnOrderNow = findViewById(R.id.btnOrderNow);
-        navView = findViewById(R.id.nav_view);
+        navView = findViewById(R.id.bottom_nav_menu);
 
         findPaymentInformationViews();
     }

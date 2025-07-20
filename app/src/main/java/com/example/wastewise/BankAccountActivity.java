@@ -12,6 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.wastewise.ui.account.AccountSellerFragment;
+
 public class BankAccountActivity extends AppCompatActivity {
 
     ImageView btnBack;
@@ -31,7 +33,7 @@ public class BankAccountActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toSettings();
+                toProfile();
             }
         });
     }
@@ -40,8 +42,8 @@ public class BankAccountActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
     }
 
-    public void toSettings(){
-        Intent intent = new Intent(this, SettingSellerActivity.class);
+    public void toProfile(){
+        Intent intent = new Intent(this, AccountSellerFragment.class);
         startActivity(intent);
     }
 }

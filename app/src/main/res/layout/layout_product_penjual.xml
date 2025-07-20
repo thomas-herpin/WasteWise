@@ -33,8 +33,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/merah"
-            android:textSize="8pt"
+            android:textSize="6pt"
             android:text="10 pcs"/>
+
+        <TextView
+            android:id="@+id/txvHarga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="7pt"
+            android:textStyle="bold"
+            android:text="Rp 10.000"/>
     </LinearLayout>
 
     <ImageView
