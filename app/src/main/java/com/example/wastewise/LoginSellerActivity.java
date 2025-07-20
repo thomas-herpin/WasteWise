@@ -36,7 +36,10 @@ public class LoginSellerActivity extends AppCompatActivity {
     }
 
     public void toDashboard() {
-        Intent intent = new Intent(this, DashboardActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("user_type", "seller");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        finish();
     }
 }

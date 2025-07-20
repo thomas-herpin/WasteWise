@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.wastewise.ui.account.AccountFragment;
+import com.example.wastewise.ui.account.AccountSellerFragment;
 
 public class PersonalDetailSellerActivity extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class PersonalDetailSellerActivity extends AppCompatActivity {
     }
 
     public void toProfile(){
-        Intent intent = new Intent(this, ProfileSellerActivity.class);
+        Intent intent = new Intent(this, AccountSellerFragment.class);
         startActivity(intent);
     }
 }

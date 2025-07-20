@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.wastewise.ui.account.AccountFragment;
+import com.example.wastewise.ui.product.ProductSellerFragment;
 
 public class CreateOfferActivity extends AppCompatActivity {
     Button btnAcceptOrder;
@@ -38,7 +39,7 @@ public class CreateOfferActivity extends AppCompatActivity {
     }
 
     private void toProduct(){
-        Intent intent = new Intent(this, ProductSellerActivity.class);
+        Intent intent = new Intent(this, ProductSellerFragment.class);
         startActivity(intent);
     }
 }

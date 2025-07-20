@@ -17,9 +17,6 @@
             android:exported="false"
             android:theme="@style/Theme.WasteWise" />
         <activity
-            android:name=".ProductSellerActivity"
-            android:exported="false" />
-        <activity
             android:name=".PrivacyPolicySellerActivity"
             android:exported="false" />
         <activity
@@ -32,16 +29,7 @@
             android:name=".PersonalDetailSellerActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileSellerActivity"
-            android:exported="false" />
-        <activity
             android:name=".BankAccountActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SalesHistoryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterSellerActivity"

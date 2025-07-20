@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.wastewise.ui.account.AccountFragment;
+import com.example.wastewise.ui.account.AccountSellerFragment;
 
 public class SettingSellerActivity extends AppCompatActivity {
 
@@ -61,17 +62,17 @@ public class SettingSellerActivity extends AppCompatActivity {
     }
 
     public void toProfile() {
-        Intent intent = new Intent(this, ProfileSellerActivity.class);
+        Intent intent = new Intent(this, AccountSellerFragment.class);
         startActivity(intent);
     }
 
     public void toLanguage() {
-        Intent intent = new Intent(this, LanguageActivity.class);
+        Intent intent = new Intent(this, LanguageSellerActivity.class);
         startActivity(intent);
     }
 
     public void toPrivacyPolicy() {
-        Intent intent = new Intent(this, PrivacyPolicyActivity.class);
+        Intent intent = new Intent(this, PrivacyPolicySellerActivity.class);
         startActivity(intent);
     }
 
