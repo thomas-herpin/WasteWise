@@ -31,10 +31,8 @@
 ## Cara Menjalankan Proyek
 1. Clone repositori ini:
    ```bash
-   git clone https://github.com/username/WasteWise.git
+   git clone https://github.com/thomas-herpin/WasteWise.git
    
 2. Buka proyek di Android Studio.
-   
 3. Sync Gradle dan pastikan dependencies sudah terpasang.
-
 4. Jalankan aplikasi di emulator atau perangkat Android.
