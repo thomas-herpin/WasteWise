@@ -14,15 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.wastewise.DetailProductActivity;
 import com.example.wastewise.R;
 import com.example.wastewise.adapter.ProductAdapter;
-import com.example.wastewise.model.Product;
-import com.example.wastewise.ui.account.AccountFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.wastewise.model.ProductBackup;
 
 import java.util.ArrayList;
 
 public class ProductFragment extends Fragment {
     private RecyclerView rvProduk;
-    private ArrayList<Product> produkArrayList;
+    private ArrayList<ProductBackup> produkArrayList;
     private ProductAdapter adapter;
 
     @Override
@@ -33,10 +31,10 @@ public class ProductFragment extends Fragment {
         rvProduk = root.findViewById(R.id.rvProduk);
         produkArrayList = new ArrayList<>();
 
-        produkArrayList.add(new Product("10 Items", "McDonalds - Mong...", 50000, R.drawable.mcdonalds));
-        produkArrayList.add(new Product("10 Items", "Roti'o - Medan Fair", 50000, R.drawable.rotio));
-        produkArrayList.add(new Product("5 Items", "HokBen - Center Point", 40000, R.drawable.hokben));
-        produkArrayList.add(new Product("3 Items", "Starbucks - Adam Malik", 20000, R.drawable.starbucks));
+        produkArrayList.add(new ProductBackup("10 Items", "McDonalds - Mong...", 50000, R.drawable.mcdonalds));
+        produkArrayList.add(new ProductBackup("10 Items", "Roti'o - Medan Fair", 50000, R.drawable.rotio));
+        produkArrayList.add(new ProductBackup("5 Items", "HokBen - Center Point", 40000, R.drawable.hokben));
+        produkArrayList.add(new ProductBackup("3 Items", "Starbucks - Adam Malik", 20000, R.drawable.starbucks));
 
         adapter = new ProductAdapter(requireContext(), produkArrayList);
         rvProduk.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -44,12 +42,12 @@ public class ProductFragment extends Fragment {
 
         adapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Product product) {
+            public void onItemClick(ProductBackup productBackup) {
                 Intent intent = new Intent(requireContext(), DetailProductActivity.class);
-                intent.putExtra("namaOutlet", product.getAlamat());
-                intent.putExtra("jumlahItem", product.getJumlahItem());
-                intent.putExtra("harga", product.getHarga());
-                intent.putExtra("logo", product.getLogoOutlet());
+                intent.putExtra("namaOutlet", productBackup.getAlamat());
+                intent.putExtra("jumlahItem", productBackup.getJumlahItem());
+                intent.putExtra("harga", productBackup.getHarga());
+                intent.putExtra("logo", productBackup.getLogoOutlet());
                 startActivity(intent);
             }
         });

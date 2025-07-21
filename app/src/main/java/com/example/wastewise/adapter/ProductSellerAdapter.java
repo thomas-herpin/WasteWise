@@ -1,7 +1,10 @@
 package com.example.wastewise.adapter;
 
+import static java.security.AccessController.getContext;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,28 +12,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.wastewise.R;
+import com.example.wastewise.model.Product;
 import com.example.wastewise.model.ProductSeller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ProductSellerAdapter extends RecyclerView.Adapter<ProductSellerAdapter.ProductSellerViewHolder> {
+import io.realm.Realm;
 
-    Context context;
-    ArrayList<ProductSeller> productSellerList;
+public class ProductSellerAdapter extends RecyclerView.Adapter<ProductSellerAdapter.ViewHolder> {
+    private Context context;
+    private List<Product> productList;
 
-    public ProductSellerAdapter(Context context, ArrayList<ProductSeller> productSellerList) {
+    public ProductSellerAdapter(Context context, List<Product> productList) {
         this.context = context;
-        this.productSellerList = productSellerList;
+        this.productList = productList;
     }
 
-    public static class ProductSellerViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imvProduk;
         TextView txvNamaProduk, txvJumlah, txvHarga;
 
-        public ProductSellerViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imvProduk = itemView.findViewById(R.id.imvProduk);
             txvNamaProduk = itemView.findViewById(R.id.txvNamaProduk);
@@ -41,23 +48,23 @@ public class ProductSellerAdapter extends RecyclerView.Adapter<ProductSellerAdap
 
     @NonNull
     @Override
-    public ProductSellerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductSellerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_product_penjual, parent, false);
-        return new ProductSellerViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductSellerViewHolder holder, int position) {
-        ProductSeller product = productSellerList.get(position);
+    public void onBindViewHolder(@NonNull ProductSellerAdapter.ViewHolder holder, int position) {
+        Product product = productList.get(position);
 
         holder.imvProduk.setImageResource(product.getFotoProduk());
-        holder.txvNamaProduk.setText(product.getNamaProduk());
-        holder.txvJumlah.setText(product.getJumlahItem());
-        holder.txvHarga.setText("Rp " + product.getHarga());
+        holder.txvNamaProduk.setText(product.getNamaItem());
+        holder.txvJumlah.setText(product.getJumlahItem() + " pcs");
+        holder.txvHarga.setText("Rp " + String.format("%,d", product.getHarga()));
     }
 
     @Override
     public int getItemCount() {
-        return productSellerList.size();
+        return productList.size();
     }
 }

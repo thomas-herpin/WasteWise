@@ -20,7 +20,7 @@ import com.example.wastewise.R;
 import com.example.wastewise.adapter.AdsAdapter;
 import com.example.wastewise.adapter.ProductHomeAdapter;
 import com.example.wastewise.model.Ads;
-import com.example.wastewise.model.Product;
+import com.example.wastewise.model.ProductBackup;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView rvProdukHome;
 
     private ArrayList<Ads> adsArrayList;
-    private ArrayList<Product> produkArrayList;
+    private ArrayList<ProductBackup> produkArrayList;
 
     private static AdsAdapter adsAdapter;
     private static ProductHomeAdapter productHomeAdapter;
@@ -92,9 +92,9 @@ public class HomeFragment extends Fragment {
 
         rvProdukHome = root.findViewById(R.id.rvProdukHome);
         produkArrayList = new ArrayList<>();
-        produkArrayList.add(new Product("10 Items", "McDonalds - Mong...", 50000, R.drawable.mcdonalds));
-        produkArrayList.add(new Product("10 Items", "Roti'o - Medan Fair", 50000, R.drawable.rotio));
-        produkArrayList.add(new Product("5 Items", "HokBen - Center Point", 50000, R.drawable.hokben));
+        produkArrayList.add(new ProductBackup("10 Items", "McDonalds - Mong...", 50000, R.drawable.mcdonalds));
+        produkArrayList.add(new ProductBackup("10 Items", "Roti'o - Medan Fair", 50000, R.drawable.rotio));
+        produkArrayList.add(new ProductBackup("5 Items", "HokBen - Center Point", 50000, R.drawable.hokben));
 
         productHomeAdapter = new ProductHomeAdapter(requireContext(), produkArrayList);
         rvProdukHome.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
