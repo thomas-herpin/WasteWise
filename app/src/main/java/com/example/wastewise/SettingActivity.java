@@ -17,7 +17,7 @@ import com.example.wastewise.ui.account.AccountFragment;
 
 public class SettingActivity extends AppCompatActivity {
     ImageView btnBack;
-    LinearLayout btnLanguage, btnAboutUs, btnPrivacyPolicy;
+    LinearLayout btnLanguage, btnAboutUs, btnPrivacyPolicy, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +31,16 @@ public class SettingActivity extends AppCompatActivity {
         });
         init();
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toProfile();
-            }
+        btnBack.setOnClickListener(v -> {
+            finish();
         });
+
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                toProfile();
+//            }
+//        });
 
         btnLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +63,13 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toExit();
+            }
+        });
+
     }
 
     public void init(){
@@ -66,6 +77,7 @@ public class SettingActivity extends AppCompatActivity {
         btnLanguage = findViewById(R.id.btnLanguage);
         btnAboutUs = findViewById(R.id.btnAboutUs);
         btnPrivacyPolicy = findViewById(R.id.btnPrivacyPolicy);
+        btnLogout = findViewById(R.id.btnLogout);
     }
 
     public void toProfile(){
@@ -85,6 +97,12 @@ public class SettingActivity extends AppCompatActivity {
 
     public void toPrivacyPolicy(){
         Intent intent = new Intent(this, PrivacyPolicyActivity.class);
+        startActivity(intent);
+    }
+
+    public void toExit(){
+        Intent intent = new Intent(this, LandingPageActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 

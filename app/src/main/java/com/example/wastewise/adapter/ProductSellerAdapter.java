@@ -33,13 +33,24 @@ public class ProductSellerAdapter extends RecyclerView.Adapter<ProductSellerAdap
         this.productList = productList;
     }
 
+    public interface OnItemEditClickListener {
+        void onEdit(Product product);
+    }
+
+    private OnItemEditClickListener editClickListener;
+
+    public void setOnItemEditClickListener(OnItemEditClickListener listener) {
+        this.editClickListener = listener;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imvProduk;
+        ImageView imvProduk, imvEdit;
         TextView txvNamaProduk, txvJumlah, txvHarga;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imvProduk = itemView.findViewById(R.id.imvProduk);
+            imvEdit = itemView.findViewById(R.id.imvEdit);
             txvNamaProduk = itemView.findViewById(R.id.txvNamaProduk);
             txvJumlah = itemView.findViewById(R.id.txvJumlah);
             txvHarga = itemView.findViewById(R.id.txvHarga);
@@ -61,6 +72,12 @@ public class ProductSellerAdapter extends RecyclerView.Adapter<ProductSellerAdap
         holder.txvNamaProduk.setText(product.getNamaItem());
         holder.txvJumlah.setText(product.getJumlahItem() + " pcs");
         holder.txvHarga.setText("Rp " + String.format("%,d", product.getHarga()));
+
+        holder.imvEdit.setOnClickListener(v -> {
+            if (editClickListener != null) {
+                editClickListener.onEdit(product); // Kirim data ke fragment
+            }
+        });
     }
 
     @Override

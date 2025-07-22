@@ -130,7 +130,7 @@
             android:layout_gravity="end"
             android:background="@drawable/button_green_rounded"
             android:textAllCaps="false"
-            android:text="Add Item"
+            android:text="Save Change"
             android:textColor="#FFFFFF" />
 
         <TextView

@@ -36,3 +36,18 @@
 2. Buka proyek di Android Studio.
 3. Sync Gradle dan pastikan dependencies sudah terpasang.
 4. Jalankan aplikasi di emulator atau perangkat Android.
+
+---
+
+## Kelompok 4
+- Arron Kennedy Taslim (03081230010)
+- Devin Hernando (03081230076)
+- Nicholas Satria Kusuma (03081230005)
+- Thomas Herpin (03081230001)
+- Terry Centrino Fangesturi (03081230030)
+
+---
+
+## Video Demonstrasi Aplikasi WasteWise
+Video ini menunjukkan cara kerja aplikasi WasteWise dari sisi pembeli dan penjual.
+Tonton videonya di sini: 

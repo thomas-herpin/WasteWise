@@ -40,6 +40,8 @@ public class ProductSellerFragment extends Fragment {
     private Realm realm;
     private ExecutorService executorService;
 
+    private Integer editingProductId = null;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,6 +68,12 @@ public class ProductSellerFragment extends Fragment {
         productList = new ArrayList<>();
         adapter = new ProductSellerAdapter(getContext(), productList);
         lsvProdukPenjual.setAdapter(adapter);
+        adapter.setOnItemEditClickListener(product -> {
+            edtNamaItem.setText(product.getNamaItem());
+            edtJumlahItem.setText(product.getJumlahItem());
+            edtHargaItem.setText(String.valueOf(product.getHarga()));
+            editingProductId = product.getIdProduk();
+        });
 
         // Load existing data from Realm
         loadProducts();
@@ -90,18 +98,29 @@ public class ProductSellerFragment extends Fragment {
         executorService.execute(() -> {
             try (Realm backgroundRealm = Realm.getDefaultInstance()) {
                 backgroundRealm.executeTransaction(r -> {
-                    Number currentId = r.where(Product.class).max("idProduk");
-                    int nextId = (currentId == null) ? 1 : currentId.intValue() + 1;
+                    if (editingProductId != null) {
+                        Product product = r.where(Product.class)
+                                .equalTo("idProduk", editingProductId)
+                                .findFirst();
 
-                    Product product = r.createObject(Product.class, nextId);
-                    product.setNamaItem(namaItem);
-                    product.setJumlahItem(jumlahItem);
-                    product.setHarga(harga);
-                    product.setFotoProduk(R.drawable.cupcake);
+                        if (product != null) {
+                            product.setNamaItem(namaItem);
+                            product.setJumlahItem(jumlahItem);
+                            product.setHarga(harga);
+                        }
+                    } else {
+                        Number currentId = r.where(Product.class).max("idProduk");
+                        int nextId = (currentId == null) ? 1 : currentId.intValue() + 1;
+
+                        Product product = r.createObject(Product.class, nextId);
+                        product.setNamaItem(namaItem);
+                        product.setJumlahItem(jumlahItem);
+                        product.setHarga(harga);
+                        product.setFotoProduk(R.drawable.cupcake);
+                    }
                 });
             }
 
-            // Update UI on main thread
             if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
                     loadProducts();
@@ -110,6 +129,7 @@ public class ProductSellerFragment extends Fragment {
             }
         });
     }
+
 
     private void clearInputFields() {
         edtNamaItem.setText("");

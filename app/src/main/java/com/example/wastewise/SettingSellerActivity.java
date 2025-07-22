@@ -14,11 +14,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.wastewise.ui.account.AccountFragment;
 import com.example.wastewise.ui.account.AccountSellerFragment;
+import com.example.wastewise.ui.home.HomeFragment;
 
 public class SettingSellerActivity extends AppCompatActivity {
 
     ImageView btnBack;
-    LinearLayout btnLanguage, btnPrivacyPolicy;
+    LinearLayout btnLanguage, btnPrivacyPolicy, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +54,26 @@ public class SettingSellerActivity extends AppCompatActivity {
             }
         });
 
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toExit();
+            }
+        });
+
     }
 
     public void init() {
         btnBack = findViewById(R.id.btnBack);
         btnLanguage = findViewById(R.id.btnLanguage);;
         btnPrivacyPolicy = findViewById(R.id.btnPrivacyPolicy);
+        btnLogout = findViewById(R.id.btnLogout);
     }
 
     public void toProfile() {
-        Intent intent = new Intent(this, AccountSellerFragment.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, AccountSellerFragment.class);
+//        startActivity(intent);
+        finish();
     }
 
     public void toLanguage() {
@@ -73,6 +83,12 @@ public class SettingSellerActivity extends AppCompatActivity {
 
     public void toPrivacyPolicy() {
         Intent intent = new Intent(this, PrivacyPolicySellerActivity.class);
+        startActivity(intent);
+    }
+
+    public void toExit(){
+        Intent intent = new Intent(this, LandingPageActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 

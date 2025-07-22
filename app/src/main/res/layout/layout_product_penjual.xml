@@ -47,7 +47,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imvDelete"
+        android:id="@+id/imvEdit"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"

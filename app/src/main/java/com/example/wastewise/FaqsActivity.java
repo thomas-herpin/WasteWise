@@ -42,7 +42,8 @@ public class FaqsActivity extends AppCompatActivity {
     }
 
     public void toProfile(){
-        Intent intent = new Intent(this, AccountFragment.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, AccountFragment.class);
+//        startActivity(intent);
+        finish();
     }
 }

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,9 @@ public class HomeFragment extends Fragment {
     private ViewPager2 rvAds;
     private RecyclerView rvProdukHome;
 
+    private RadioGroup rdgCategory;
+
+    private RadioButton rdbAll, rdbRestaurant, rdbSupermarket;
     private TextView txvWelcome;
     private ArrayList<Ads> adsArrayList;
     private ArrayList<ProductBackup> produkArrayList;
@@ -98,6 +103,13 @@ public class HomeFragment extends Fragment {
                 });
             }
         });
+
+        rdgCategory = root.findViewById(R.id.rdgCategory);
+        rdbAll = root.findViewById(R.id.rdbAll);
+        rdbRestaurant = root.findViewById(R.id.rdbRestaurant);
+        rdbSupermarket = root.findViewById(R.id.rdbSupermarket);
+
+        rdbAll.setChecked(true);
 
         rvProdukHome = root.findViewById(R.id.rvProdukHome);
         produkArrayList = new ArrayList<>();

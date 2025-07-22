@@ -39,7 +39,8 @@ public class LanguageSellerActivity extends AppCompatActivity {
     }
 
     public void toSettings(){
-        Intent intent = new Intent(this, SettingSellerActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, SettingSellerActivity.class);
+//        startActivity(intent);
+        finish();
     }
 }

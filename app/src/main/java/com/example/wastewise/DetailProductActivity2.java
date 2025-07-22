@@ -22,6 +22,7 @@ import com.example.wastewise.adapter.ProductDetailAdapter2;
 import com.example.wastewise.adapter.ProductSellerAdapter;
 import com.example.wastewise.model.Product;
 import com.example.wastewise.model.ProductDetail;
+import com.example.wastewise.ui.product.ProductFragment;
 
 import java.util.ArrayList;
 
@@ -48,17 +49,17 @@ public class DetailProductActivity2 extends AppCompatActivity {
         });
         init();
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toPayment();
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toProduct();
             }
         });
 
@@ -82,8 +83,16 @@ public class DetailProductActivity2 extends AppCompatActivity {
         btnNext = findViewById(R.id.btnNext);
     }
 
-    private void toPayment() {
+    public void toPayment(){
         Intent intent = new Intent(this, OrderSummaryActivity.class);
         startActivity(intent);
     }
+
+    public void toProduct(){
+//        Intent intent = new Intent(this, ProductFragment.class);
+//        startActivity(intent);
+        finish();
+    }
+
+
 }

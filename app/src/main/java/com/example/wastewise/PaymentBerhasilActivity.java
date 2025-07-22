@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.wastewise.ui.activity.ActivityFragment;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -140,5 +142,10 @@ public class PaymentBerhasilActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    public void toActivity(){
+        Intent intent = new Intent(this, ActivityFragment.class);
+        startActivity(intent);
     }
 }

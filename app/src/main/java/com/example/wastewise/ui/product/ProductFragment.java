@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,10 +26,21 @@ public class ProductFragment extends Fragment {
     private ArrayList<ProductBackup> produkArrayList;
     private ProductAdapter adapter;
 
+    private RadioGroup rdgCategory;
+
+    private RadioButton rdbAll, rdbRestaurant, rdbSupermarket;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_product, container, false);
+
+        rdgCategory = root.findViewById(R.id.rdgCategory);
+        rdbAll = root.findViewById(R.id.rdbAll);
+        rdbRestaurant = root.findViewById(R.id.rdbRestaurant);
+        rdbSupermarket = root.findViewById(R.id.rdbSupermarket);
+
+        rdbAll.setChecked(true);
 
         rvProduk = root.findViewById(R.id.rvProduk);
         produkArrayList = new ArrayList<>();
