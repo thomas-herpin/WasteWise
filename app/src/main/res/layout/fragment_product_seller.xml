@@ -54,7 +54,8 @@
             tools:layout_editor_absoluteY="1dp">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:id="@+id/edtNamaItem"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:hint="Product Name"
@@ -80,7 +81,8 @@
             tools:layout_editor_absoluteY="1dp">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:id="@+id/edtJumlahItem"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:hint="Quantity"
@@ -106,7 +108,8 @@
             tools:layout_editor_absoluteY="1dp">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:id="@+id/edtHargaItem"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:hint="Price"
@@ -117,31 +120,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/button_light_green"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:paddingLeft="17dp"
-            android:paddingTop="17dp"
-            android:paddingBottom="15dp"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="1dp">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="Expired Date"
-                android:textColor="@color/black"
-                android:textColorHint="@color/greenborder"
-                android:textSize="9pt"
-                android:textStyle="bold" />
-
-        </LinearLayout>
 
         <Button
             android:id="@+id/btnCreateOffer"

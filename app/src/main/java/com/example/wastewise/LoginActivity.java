@@ -74,27 +74,34 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        if (isValid(email, password)) {
-            Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("user_type", "buyer");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
 
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("user_type", "buyer");
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        } else {
-            Toast.makeText(this, "Email atau password tidak valid.", Toast.LENGTH_SHORT).show();
-        }
+
+
+//        if (isValid(email, password)) {
+//            Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show();
+//
+//            Intent intent = new Intent(this, MainActivity.class);
+//            intent.putExtra("user_type", "buyer");
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(intent);
+//            finish();
+//        } else {
+//            Toast.makeText(this, "Email atau password tidak valid.", Toast.LENGTH_SHORT).show();
+//        }
     }
 
-    private boolean isValid(String email, String password) {
-        Realm realm = Realm.getDefaultInstance();
-        User user = realm.where(User.class)
-                .equalTo("email", email)
-                .equalTo("password", password)
-                .findFirst();
-        realm.close();
-        return user != null;
-    }
+//    private boolean isValid(String email, String password) {
+//        Realm realm = Realm.getDefaultInstance();
+//        User user = realm.where(User.class)
+//                .equalTo("email", email)
+//                .equalTo("password", password)
+//                .findFirst();
+//        realm.close();
+//        return user != null;
+//    }
 
 }

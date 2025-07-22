@@ -1,28 +1,59 @@
 package com.example.wastewise.model;
 
-public class Product {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Product extends RealmObject {
+    public Product() {
+    }
+
+    @PrimaryKey
+    private int idProduk;
+
+    private Seller seller;
+
+    private String namaItem;
 
     private String jumlahItem;
 
-    private String alamat;
-
     private int harga;
 
-    private int logoOutlet;
+    private int tanggalExpired;
 
-    public Product(String jumlahItem, String alamat, int harga, int logoOutlet) {
+    private int fotoProduk;
+
+    public Product(int idProduk, Seller seller, String jumlahItem, int harga, int tanggalExpired) {
+        this.idProduk = idProduk;
+        this.seller = seller;
+        this.namaItem = namaItem;
         this.jumlahItem = jumlahItem;
-        this.alamat = alamat;
         this.harga = harga;
-        this.logoOutlet = logoOutlet;
+        this.tanggalExpired = tanggalExpired;
+        this.fotoProduk = fotoProduk;
     }
 
-    public int getLogoOutlet() {
-        return logoOutlet;
+    public int getIdProduk() {
+        return idProduk;
     }
 
-    public void setLogoOutlet(int logoOutlet) {
-        this.logoOutlet = logoOutlet;
+    public void setIdProduk(int idProduk) {
+        this.idProduk = idProduk;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
+
+    public String getNamaItem() {
+        return namaItem;
+    }
+
+    public void setNamaItem(String namaItem) {
+        this.namaItem = namaItem;
     }
 
     public String getJumlahItem() {
@@ -33,19 +64,28 @@ public class Product {
         this.jumlahItem = jumlahItem;
     }
 
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public void setAlamat(String alamat) {
-        alamat = alamat;
-    }
-
     public int getHarga() {
         return harga;
     }
 
     public void setHarga(int harga) {
-        harga = harga;
+        this.harga = harga;
+    }
+
+    public int getTanggalExpired() {
+        return tanggalExpired;
+    }
+
+    public void setTanggalExpired(int tanggalExpired) {
+        this.tanggalExpired = tanggalExpired;
+    }
+
+    public int getFotoProduk() {
+        return fotoProduk;
+    }
+
+    public void setFotoProduk(int fotoProduk) {
+        this.fotoProduk = fotoProduk;
     }
 }
+

@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import com.example.wastewise.R;
-import com.example.wastewise.model.Product;
+import com.example.wastewise.model.ProductBackup;
 
 public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeAdapter.ProductHomeViewHolder> {
 
     Context context;
-    ArrayList<Product> productArrayList;
+    ArrayList<ProductBackup> productArrayList;
 
-    public ProductHomeAdapter(Context context, ArrayList<Product> productArrayList) {
+    public ProductHomeAdapter(Context context, ArrayList<ProductBackup> productArrayList) {
         this.context = context;
         this.productArrayList = productArrayList;
     }
@@ -47,12 +47,12 @@ public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ProductHomeViewHolder holder, int position) {
-        Product product = productArrayList.get(position);
+        ProductBackup productBackup = productArrayList.get(position);
 
-        holder.imvProduk.setImageResource(product.getLogoOutlet());
-        holder.txvJumlahItem.setText(product.getJumlahItem());
-        holder.txvAlamatOutlet.setText(product.getAlamat());
-        holder.txvHarga.setText("Rp " + product.getHarga());
+        holder.imvProduk.setImageResource(productBackup.getLogoOutlet());
+        holder.txvJumlahItem.setText(productBackup.getJumlahItem());
+        holder.txvAlamatOutlet.setText(productBackup.getAlamat());
+        holder.txvHarga.setText("Rp " + productBackup.getHarga());
     }
 
     @Override
