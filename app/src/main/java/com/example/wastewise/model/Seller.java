@@ -6,8 +6,6 @@ import io.realm.annotations.PrimaryKey;
 public class Seller extends RealmObject {
     public Seller() {
     }
-    @PrimaryKey
-    private int idOutlet;
 
     private String namaOutlet;
 
@@ -17,20 +15,11 @@ public class Seller extends RealmObject {
 
     private int logoOutlet;
 
-    public Seller(int idOutlet, String namaOutlet, String tipeOutlet, String alamatOutlet, int logoOutlet) {
-        this.idOutlet = idOutlet;
+    public Seller(String namaOutlet, String tipeOutlet, String alamatOutlet, int logoOutlet) {
         this.namaOutlet = namaOutlet;
         this.tipeOutlet = tipeOutlet;
         this.alamatOutlet = alamatOutlet;
         this.logoOutlet = logoOutlet;
-    }
-
-    public int getIdOutlet() {
-        return idOutlet;
-    }
-
-    public void setIdOutlet(int idOutlet) {
-        this.idOutlet = idOutlet;
     }
 
     public String getNamaOutlet() {
