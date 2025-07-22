@@ -1,11 +1,13 @@
 package com.example.wastewise.ui.account;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,11 +17,16 @@ import com.example.wastewise.BankAccountActivity;
 import com.example.wastewise.PersonalDetailSellerActivity;
 import com.example.wastewise.R;
 import com.example.wastewise.SettingSellerActivity;
+import com.example.wastewise.model.Seller;
+
+import io.realm.Realm;
 
 public class AccountSellerFragment extends Fragment {
 
     LinearLayout btnPersonalDetailOutlet, btnSettingsSeller, btnBank;
+    TextView txtNamaOutlet, txtEmailOutlet;
     private View rootView;
+    Realm realm;
 
     @Nullable
     @Override
@@ -33,6 +40,23 @@ public class AccountSellerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         init();
+
+        realm = Realm.getDefaultInstance();
+
+        SharedPreferences prefs = requireContext().getSharedPreferences("login_seller_prefs", getContext().MODE_PRIVATE);
+        String email = prefs.getString("email_seller", null);
+
+        if (email != null) {
+            Seller seller = realm.where(Seller.class)
+                    .equalTo("email", email)
+                    .findFirst();
+
+            if (seller != null) {
+                txtNamaOutlet.setText(seller.getNamaOutlet());
+                txtEmailOutlet.setText(seller.getEmail());
+            }
+        }
+
         setupClickListeners();
     }
 
@@ -40,6 +64,8 @@ public class AccountSellerFragment extends Fragment {
         btnPersonalDetailOutlet = rootView.findViewById(R.id.btnPersonalDetailOutlet);
         btnSettingsSeller = rootView.findViewById(R.id.btnSettingsSeller);
         btnBank = rootView.findViewById(R.id.btnBank);
+        txtNamaOutlet = rootView.findViewById(R.id.txtNamaOutlet);
+        txtEmailOutlet = rootView.findViewById(R.id.txtEmailOutlet);
     }
 
     private void setupClickListeners() {

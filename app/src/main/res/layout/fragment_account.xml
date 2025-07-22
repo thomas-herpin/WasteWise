@@ -73,7 +73,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtNama"
+                        android:id="@+id/txvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Abang Ganteng"
@@ -82,7 +82,7 @@
                         android:textSize="10pt"/>
 
                     <TextView
-                        android:id="@+id/txtEmail"
+                        android:id="@+id/txvEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="AbgGantengBangets@gmail.com"
