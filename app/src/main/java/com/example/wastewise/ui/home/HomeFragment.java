@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
@@ -29,6 +30,7 @@ public class HomeFragment extends Fragment {
     private ViewPager2 rvAds;
     private RecyclerView rvProdukHome;
 
+    private TextView txvWelcome;
     private ArrayList<Ads> adsArrayList;
     private ArrayList<ProductBackup> produkArrayList;
 
@@ -47,8 +49,15 @@ public class HomeFragment extends Fragment {
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
                 return insets;
             });
+            txvWelcome = root.findViewById(R.id.txvWelcome);
 
+            String username = "";
+            if (getActivity() != null) {
+                username = getActivity().getIntent().getStringExtra("username");
+                txvWelcome.setText("Hello, " + username + "!");
+            }
         }
+
 
         rvAds = root.findViewById(R.id.rvAds);
         adsArrayList = new ArrayList<>();

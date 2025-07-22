@@ -2,8 +2,10 @@ package com.example.wastewise;
 
 import static java.security.AccessController.getContext;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -46,6 +48,20 @@ public class DetailProductActivity2 extends AppCompatActivity {
         });
         init();
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toPayment();
+            }
+        });
+
         final ArrayList<Product> arrayList = new ArrayList<>();
 
         Realm realm = Realm.getDefaultInstance();
@@ -66,5 +82,8 @@ public class DetailProductActivity2 extends AppCompatActivity {
         btnNext = findViewById(R.id.btnNext);
     }
 
-
+    private void toPayment() {
+        Intent intent = new Intent(this, OrderSummaryActivity.class);
+        startActivity(intent);
+    }
 }

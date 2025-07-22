@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +19,7 @@ import com.example.wastewise.ui.account.AccountSellerFragment;
 public class PersonalDetailSellerActivity extends AppCompatActivity {
 
     ImageView btnBack;
+    EditText edtOutletName, edtEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,30 @@ public class PersonalDetailSellerActivity extends AppCompatActivity {
                 toProfile();
             }
         });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toProfile();
+            }
+        });
+
+        String outletName = getIntent().getStringExtra("seller_username");
+        String email = getIntent().getStringExtra("seller_email");
+
+        if (outletName != null) {
+            edtOutletName.setText(outletName);
+        }
+
+        if (email != null) {
+            edtEmail.setText(email);
+        }
     }
 
     public void init(){
         btnBack = findViewById(R.id.btnBack);
+        edtOutletName = findViewById(R.id.edtOutletName);
+        edtEmail = findViewById(R.id.edtEmail);
     }
 
     public void toProfile(){

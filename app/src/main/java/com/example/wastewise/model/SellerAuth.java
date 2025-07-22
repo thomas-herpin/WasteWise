@@ -3,19 +3,22 @@ package com.example.wastewise.model;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class User extends RealmObject {
+public class SellerAuth extends RealmObject {
     @PrimaryKey
     private String email;
     private String username;
     private String password;
 
-    public User() {
+    private String namaOutlet;
+
+    public SellerAuth() {
     }
 
-    public User(String email, String username, String password) {
+    public SellerAuth(String email, String username, String password, String namaOutlet) {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.namaOutlet = namaOutlet;
     }
 
     // Getter dan Setter
@@ -41,5 +44,13 @@ public class User extends RealmObject {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNamaOutlet() {
+        return namaOutlet;
+    }
+
+    public void setNamaOutlet(String namaOutlet) {
+        this.namaOutlet = namaOutlet;
     }
 }
