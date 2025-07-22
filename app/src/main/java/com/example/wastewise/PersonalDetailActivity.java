@@ -30,12 +30,16 @@ public class PersonalDetailActivity extends AppCompatActivity {
 
         init();
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toProfile();
-            }
+        btnBack.setOnClickListener(v -> {
+            finish(); // Menutup activity dan kembali ke tempat sebelumnya (AccountFragment)
         });
+
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                toProfile();
+//            }
+//        });
     }
 
     public void init(){

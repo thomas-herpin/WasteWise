@@ -66,7 +66,8 @@ public class PersonalDetailSellerActivity extends AppCompatActivity {
     }
 
     public void toProfile(){
-        Intent intent = new Intent(this, AccountSellerFragment.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, AccountSellerFragment.class);
+//        startActivity(intent);
+        finish();
     }
 }

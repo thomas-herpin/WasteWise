@@ -40,7 +40,8 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
     }
 
     public void toSettings(){
-        Intent intent = new Intent(this, SettingActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, SettingActivity.class);
+//        startActivity(intent);
+        finish();
     }
 }
