@@ -37,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
+
         txvSignIn = findViewById(R.id.txvSignIn);
         edtUsername = findViewById(R.id.edtUsername);
         edtEmail = findViewById(R.id.edtEmail);
@@ -60,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private boolean isInputValid() {
@@ -92,20 +92,40 @@ public class RegisterActivity extends AppCompatActivity {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
 
-        Realm realm = Realm.getDefaultInstance();
-        realm.executeTransaction(r -> {
-            User existingUser = r.where(User.class).equalTo("email", email).findFirst();
-            if (existingUser == null) {
-                User user = r.createObject(User.class, email);
-                user.setUsername(username);
-                user.setPassword(password);
-                Toast.makeText(this, "Registrasi berhasil!", Toast.LENGTH_SHORT).show();
-                toLogin();
-            } else {
+        Realm realm = null;
+        try {
+            realm = Realm.getDefaultInstance();
+
+            User existingUser = realm.where(User.class).equalTo("email", email).findFirst();
+            if (existingUser != null) {
                 Toast.makeText(this, "Email sudah terdaftar!", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
-        realm.close();
+
+            realm.beginTransaction();
+
+            User newUser = new User();
+            newUser.setEmail(email);
+            newUser.setUsername(username);
+            newUser.setPassword(password);
+
+            realm.copyToRealm(newUser);
+            realm.commitTransaction();
+
+            Toast.makeText(this, "Registrasi berhasil!", Toast.LENGTH_SHORT).show();
+            toLogin();
+
+        } catch (Exception e) {
+            android.util.Log.e("RegisterError", "Error: " + e.getMessage(), e);
+            if (realm != null && realm.isInTransaction()) {
+                realm.cancelTransaction();
+            }
+            Toast.makeText(this, "Terjadi error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        } finally {
+            if (realm != null && !realm.isClosed()) {
+                realm.close();
+            }
+        }
     }
 
     public void toLogin() {
