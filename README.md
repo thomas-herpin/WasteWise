@@ -46,7 +46,7 @@
 - Thomas Herpin (03081230001)
 - Terry Centrino Fangesturi (03081230030)
 
-  ---
+---
 
 ## Video Demonstrasi Aplikasi WasteWise
 Video ini menunjukkan cara kerja aplikasi WasteWise dari sisi pembeli dan penjual.
