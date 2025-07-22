@@ -87,7 +87,6 @@ public class ProductSellerFragment extends Fragment {
 
         int harga = Integer.parseInt(hargaStr);
 
-        // Execute database operation in background thread
         executorService.execute(() -> {
             try (Realm backgroundRealm = Realm.getDefaultInstance()) {
                 backgroundRealm.executeTransaction(r -> {
