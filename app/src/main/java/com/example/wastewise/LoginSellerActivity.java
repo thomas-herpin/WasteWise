@@ -16,7 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.wastewise.model.SellerAuth;
+import com.example.wastewise.model.Seller;
 
 import io.realm.Realm;
 
@@ -38,14 +38,20 @@ public class LoginSellerActivity extends AppCompatActivity {
             return insets;
         });
 
+        initViews();
+        loadRememberedCredentials();
+        setClickListeners();
+    }
+
+    private void initViews() {
         txvSignUp = findViewById(R.id.txvSignUp);
         btnLoginSlr = findViewById(R.id.btnLoginSlr);
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         cbxRemember = findViewById(R.id.cbxRemember);
+    }
 
-        loadRememberedCredentials();
-
+    private void setClickListeners() {
         txvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +96,22 @@ public class LoginSellerActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    private void saveSellerSession(Seller seller) {
+        SharedPreferences prefs = getSharedPreferences("seller_session", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString("email", seller.getEmail());
+        editor.putString("username", seller.getUsername());
+        editor.putString("nama_outlet", seller.getNamaOutlet());
+        editor.putString("tipe_outlet", seller.getTipeOutlet());
+        editor.putString("alamat_outlet", seller.getAlamatOutlet());
+        editor.putInt("logo_outlet", seller.getLogoOutlet());
+        editor.putBoolean("is_logged_in", true);
+        editor.putString("user_type", "seller");
+
+        editor.apply();
+    }
+
     public void toRegisterSeller() {
         Intent intent = new Intent(this, RegisterSellerActivity.class);
         startActivity(intent);
@@ -101,66 +123,81 @@ public class LoginSellerActivity extends AppCompatActivity {
 
         if (email.isEmpty()) {
             edtEmail.setError("Email belum terisi.");
+            edtEmail.requestFocus();
+            return;
+        }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edtEmail.setError("Format email tidak valid.");
+            edtEmail.requestFocus();
             return;
         }
 
         if (password.isEmpty()) {
             edtPassword.setError("Password belum terisi.");
+            edtPassword.requestFocus();
             return;
         }
 
-        SellerAuth seller = validateSeller(email, password);
-        if (seller != null) {
-            saveCredentials(email, password);
-
-            Toast.makeText(this, "Login mitra berhasil!", Toast.LENGTH_SHORT).show();
-            toSellerDashboard(seller);
-        } else {
-            Toast.makeText(this, "Email atau password tidak valid.", Toast.LENGTH_SHORT).show();
-        }
+        validateSeller(email, password);
     }
 
-    private SellerAuth validateSeller(String email, String password) {
-        Realm realm = null;
-        SellerAuth seller = null;
+    private void validateSeller(String email, String password) {
+        Realm realm = Realm.getDefaultInstance();
 
         try {
-            realm = Realm.getDefaultInstance();
-
-            SellerAuth foundSeller = realm.where(SellerAuth.class)
+            Seller foundSeller = realm.where(Seller.class)
                     .equalTo("email", email)
                     .equalTo("password", password)
                     .findFirst();
 
             if (foundSeller != null) {
-                // Copy seller data to avoid managed object issues
-                seller = new SellerAuth();
+                // Create unmanaged copy of seller data
+                Seller seller = new Seller();
                 seller.setEmail(foundSeller.getEmail());
                 seller.setUsername(foundSeller.getUsername());
                 seller.setNamaOutlet(foundSeller.getNamaOutlet());
+                seller.setTipeOutlet(foundSeller.getTipeOutlet());
+                seller.setAlamatOutlet(foundSeller.getAlamatOutlet());
+                seller.setLogoOutlet(foundSeller.getLogoOutlet());
 
                 android.util.Log.d("SellerLoginSuccess", "Seller found: " + seller.getUsername());
+
+                saveCredentials(email, password);
+
+                saveSellerSession(seller);
+
+                Toast.makeText(this, "Login mitra berhasil!", Toast.LENGTH_SHORT).show();
+                toSellerDashboard(seller);
+
             } else {
                 android.util.Log.d("SellerLoginFailed", "No seller found with email: " + email);
+                Toast.makeText(this, "Email atau password tidak valid.", Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {
             android.util.Log.e("SellerLoginError", "Error during login: " + e.getMessage(), e);
+            Toast.makeText(this, "Terjadi kesalahan saat login: " + e.getMessage(), Toast.LENGTH_LONG).show();
+
+            btnLoginSlr.setEnabled(true);
+            btnLoginSlr.setText("Masuk");
+
         } finally {
             if (realm != null && !realm.isClosed()) {
                 realm.close();
             }
         }
-
-        return seller;
     }
 
-    private void toSellerDashboard(SellerAuth seller) {
+    private void toSellerDashboard(Seller seller) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("user_type", "seller");
-        intent.putExtra("seller_email", seller.getEmail());
-        intent.putExtra("seller_username", seller.getUsername());
-        intent.putExtra("seller_outlet", seller.getNamaOutlet());
+
+        SharedPreferences prefs = getSharedPreferences("login_seller_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("email_seller", seller.getEmail());
+        editor.apply();
+
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

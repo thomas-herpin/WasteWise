@@ -15,14 +15,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.wastewise.model.SellerAuth;
+import com.example.wastewise.model.Seller;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class RegisterSellerActivity extends AppCompatActivity {
     TextView txvSignIn;
     Button btnDaftarSlr;
-    EditText editTextText, edtEmail, edtPassword, edtConfirmPassword;
+    EditText edtUsername, edtEmail, edtPassword, edtConfirmPassword;
     CheckBox cbxAgree;
 
     @Override
@@ -37,8 +38,9 @@ public class RegisterSellerActivity extends AppCompatActivity {
             return insets;
         });
 
+
         txvSignIn = findViewById(R.id.txvSignIn);
-        editTextText = findViewById(R.id.editTextText); // Username field
+        edtUsername = findViewById(R.id.edtUsername);
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
@@ -63,13 +65,23 @@ public class RegisterSellerActivity extends AppCompatActivity {
     }
 
     private boolean isInputValid() {
-        String username = editTextText.getText().toString().trim();
+        String username = edtUsername.getText().toString().trim();
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
         String confirmPassword = edtConfirmPassword.getText().toString().trim();
 
         if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Toast.makeText(this, "Ada yang belum terisi", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "Format email tidak valid", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (password.length() < 6) {
+            Toast.makeText(this, "Password minimal 6 karakter", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -87,49 +99,50 @@ public class RegisterSellerActivity extends AppCompatActivity {
     }
 
     private void registerSellerToRealm() {
-        String username = editTextText.getText().toString().trim();
+        String username = edtUsername.getText().toString().trim();
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
 
-        Realm realm = null;
-        try {
-            realm = Realm.getDefaultInstance();
+        Realm realm = Realm.getDefaultInstance();
 
-            SellerAuth existingSeller = realm.where(SellerAuth.class).equalTo("email", email).findFirst();
-            if (existingSeller != null) {
-                Toast.makeText(this, "Email sudah terdaftar!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            realm.beginTransaction();
-
-            SellerAuth newSeller = new SellerAuth();
-            newSeller.setEmail(email);
-            newSeller.setUsername(username);
-            newSeller.setPassword(password);
-            newSeller.setNamaOutlet(username + "'s Outlet");
-
-            realm.copyToRealm(newSeller);
-            realm.commitTransaction();
-
-            Toast.makeText(this, "Registrasi mitra berhasil!", Toast.LENGTH_SHORT).show();
-            toLoginSeller();
-
-        } catch (Exception e) {
-            android.util.Log.e("RegisterSellerError", "Error: " + e.getMessage(), e);
-            if (realm != null && realm.isInTransaction()) {
-                realm.cancelTransaction();
-            }
-            Toast.makeText(this, "Terjadi error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        } finally {
-            if (realm != null && !realm.isClosed()) {
-                realm.close();
-            }
+        Seller existingSeller = realm.where(Seller.class).equalTo("email", email).findFirst();
+        if (existingSeller != null) {
+            Toast.makeText(this, "Email sudah terdaftar!", Toast.LENGTH_SHORT).show();
+            realm.close();
+            return;
         }
+
+        realm.executeTransactionAsync(
+                r -> {
+                    Seller newSeller = r.createObject(Seller.class, email);
+                    newSeller.setPassword(password);
+                    newSeller.setNamaOutlet(username);
+                    newSeller.setTipeOutlet("Eatery");
+                    newSeller.setAlamatOutlet("");
+                    newSeller.setLogoOutlet(0);
+
+                    android.util.Log.d("RegisterSeller", "Seller registered: " + email);
+                },
+                () -> {
+                    runOnUiThread(() -> {
+                        Toast.makeText(RegisterSellerActivity.this, "Registrasi mitra berhasil!", Toast.LENGTH_SHORT).show();
+                        toLoginSeller();
+                    });
+                },
+                error -> {
+                    runOnUiThread(() -> {
+                        android.util.Log.e("RegisterSellerError", "Error: " + error.getMessage(), error);
+                        Toast.makeText(RegisterSellerActivity.this, "Terjadi error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                    });
+                }
+        );
+
+        realm.close();
     }
 
     public void toLoginSeller() {
         Intent intent = new Intent(this, LoginSellerActivity.class);
         startActivity(intent);
+        finish();
     }
 }
