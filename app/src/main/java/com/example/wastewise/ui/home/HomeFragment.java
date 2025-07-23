@@ -139,6 +139,15 @@ public class HomeFragment extends Fragment {
         rvProdukHome.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
         rvProdukHome.setAdapter(productHomeAdapter);
 
+        productHomeAdapter.setOnItemClickListener(new ProductHomeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(ProductBackup productBackup) {
+                Intent intent = new Intent(requireContext(), DetailProductActivity2.class);
+                intent.putExtra("source", "home");
+                startActivity(intent);
+            }
+        });
+
         return root;
     }
 

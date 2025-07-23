@@ -1,6 +1,5 @@
 package com.example.wastewise;
 
-import static java.security.AccessController.getContext;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,14 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.wastewise.adapter.ProductDetailAdapter;
 import com.example.wastewise.adapter.ProductDetailAdapter2;
-import com.example.wastewise.adapter.ProductSellerAdapter;
 import com.example.wastewise.model.Product;
-import com.example.wastewise.model.ProductDetail;
-import com.example.wastewise.ui.product.ProductFragment;
 
 import java.util.ArrayList;
 
@@ -37,6 +31,8 @@ public class DetailProductActivity2 extends AppCompatActivity {
     ImageView btnBack, imv;
     Button btnNext;
 
+    private String sourceActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +43,12 @@ public class DetailProductActivity2 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        sourceActivity = getIntent().getStringExtra("source");
+        if (sourceActivity == null) {
+            sourceActivity = "product";
+        }
+
         init();
 
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +61,7 @@ public class DetailProductActivity2 extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toProduct();
+                toBack();
             }
         });
 
@@ -69,7 +71,6 @@ public class DetailProductActivity2 extends AppCompatActivity {
         RealmResults<Product> resutls = realm.where(Product.class).findAll();
         if (resutls != null){
             arrayList.addAll(realm.copyFromRealm(resutls));
-
             Log.d("REALM", "Product count: " + arrayList.size());
         }
 
@@ -88,11 +89,19 @@ public class DetailProductActivity2 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void toProduct(){
-//        Intent intent = new Intent(this, ProductFragment.class);
-//        startActivity(intent);
-        finish();
+    public void toBack(){
+        if ("home".equals(sourceActivity)) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("fragment", "home");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        } else if ("product".equals(sourceActivity)) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("fragment", "product");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        } else {
+            finish();
+        }
     }
-
-
 }

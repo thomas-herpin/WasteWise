@@ -53,10 +53,32 @@ public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeAdapter.
         holder.txvJumlahItem.setText(productBackup.getJumlahItem());
         holder.txvAlamatOutlet.setText(productBackup.getAlamat());
         holder.txvHarga.setText("Rp " + productBackup.getHarga());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    int currentPosition = holder.getAdapterPosition();
+                    if (currentPosition != RecyclerView.NO_POSITION) {
+                        onItemClickListener.onItemClick(productArrayList.get(currentPosition));
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return productArrayList.size();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(ProductBackup productBackup);
+    }
+
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
     }
 }
