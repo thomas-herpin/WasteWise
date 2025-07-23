@@ -59,10 +59,10 @@ public class ProductFragment extends Fragment {
             @Override
             public void onItemClick(ProductBackup productBackup) {
                 Intent intent = new Intent(requireContext(), DetailProductActivity2.class);
-                intent.putExtra("namaOutlet", productBackup.getAlamat());
-                intent.putExtra("jumlahItem", productBackup.getJumlahItem());
-                intent.putExtra("harga", productBackup.getHarga());
-                intent.putExtra("logo", productBackup.getLogoOutlet());
+//                intent.putExtra("namaOutlet", productBackup.getAlamat());
+//                intent.putExtra("jumlahItem", productBackup.getJumlahItem());
+//                intent.putExtra("harga", productBackup.getHarga());
+//                intent.putExtra("logo", productBackup.getLogoOutlet());
                 startActivity(intent);
             }
         });

@@ -1,5 +1,6 @@
 package com.example.wastewise.ui.home;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,8 +21,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.wastewise.DetailProductActivity2;
 import com.example.wastewise.R;
 import com.example.wastewise.adapter.AdsAdapter;
+import com.example.wastewise.adapter.ProductAdapter;
 import com.example.wastewise.adapter.ProductHomeAdapter;
 import com.example.wastewise.model.Ads;
 import com.example.wastewise.model.ProductBackup;
@@ -130,6 +133,7 @@ public class HomeFragment extends Fragment {
         produkArrayList.add(new ProductBackup("10 Items", "McDonalds - Mong...", 50000, R.drawable.mcdonalds));
         produkArrayList.add(new ProductBackup("10 Items", "Roti'o - Medan Fair", 50000, R.drawable.rotio));
         produkArrayList.add(new ProductBackup("5 Items", "HokBen - Center Point", 50000, R.drawable.hokben));
+        produkArrayList.add(new ProductBackup("10 Items", "Restoran enak - Jalan...", 50000, R.drawable.logooutlet));
 
         productHomeAdapter = new ProductHomeAdapter(requireContext(), produkArrayList);
         rvProdukHome.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
