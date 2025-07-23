@@ -33,6 +33,17 @@ public class ProductSellerAdapter extends RecyclerView.Adapter<ProductSellerAdap
         this.productList = productList;
     }
 
+    public interface OnItemDeleteClickListener {
+        void onDelete(Product product);
+    }
+
+    private OnItemDeleteClickListener deleteClickListener;
+
+    public void setOnItemDeleteClickListener(OnItemDeleteClickListener listener) {
+        this.deleteClickListener = listener;
+    }
+
+
     public interface OnItemEditClickListener {
         void onEdit(Product product);
     }
@@ -44,13 +55,14 @@ public class ProductSellerAdapter extends RecyclerView.Adapter<ProductSellerAdap
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imvProduk, imvEdit;
+        ImageView imvProduk, imvEdit, imvDelete;
         TextView txvNamaProduk, txvJumlah, txvHarga;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imvProduk = itemView.findViewById(R.id.imvProduk);
             imvEdit = itemView.findViewById(R.id.imvEdit);
+            imvDelete = itemView.findViewById(R.id.imvDelete);
             txvNamaProduk = itemView.findViewById(R.id.txvNamaProduk);
             txvJumlah = itemView.findViewById(R.id.txvJumlah);
             txvHarga = itemView.findViewById(R.id.txvHarga);
@@ -78,6 +90,13 @@ public class ProductSellerAdapter extends RecyclerView.Adapter<ProductSellerAdap
                 editClickListener.onEdit(product); // Kirim data ke fragment
             }
         });
+
+        holder.imvDelete.setOnClickListener(v -> {
+            if (deleteClickListener != null) {
+                deleteClickListener.onDelete(product);
+            }
+        });
+
     }
 
     @Override

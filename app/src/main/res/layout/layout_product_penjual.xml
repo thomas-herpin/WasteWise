@@ -46,13 +46,27 @@
             android:text="Rp 10.000"/>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imvEdit"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:padding="8dp"
-        android:src="@drawable/iconedit"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imvEdit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:padding="8dp"
+            android:src="@drawable/iconedit"/>
+
+        <ImageView
+            android:id="@+id/imvDelete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:padding="8dp"
+            android:src="@drawable/delete"/>
+    </LinearLayout>
+
 
 
 </LinearLayout>
