@@ -7,7 +7,11 @@ public class User extends RealmObject {
     @PrimaryKey
     private String email;
     private String username;
+    private String fullName;
     private String password;
+    private String phone;
+    private String dob;
+    private String gender;
 
     public User() {
     }
@@ -18,7 +22,6 @@ public class User extends RealmObject {
         this.password = password;
     }
 
-    // Getter dan Setter
     public String getEmail() {
         return email;
     }
@@ -41,5 +44,34 @@ public class User extends RealmObject {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

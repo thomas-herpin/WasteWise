@@ -1,5 +1,6 @@
 package com.example.wastewise.ui.home;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -24,8 +25,11 @@ import com.example.wastewise.adapter.AdsAdapter;
 import com.example.wastewise.adapter.ProductHomeAdapter;
 import com.example.wastewise.model.Ads;
 import com.example.wastewise.model.ProductBackup;
+import com.example.wastewise.model.User;
 
 import java.util.ArrayList;
+
+import io.realm.Realm;
 
 public class HomeFragment extends Fragment {
 
@@ -41,6 +45,7 @@ public class HomeFragment extends Fragment {
 
     private static AdsAdapter adsAdapter;
     private static ProductHomeAdapter productHomeAdapter;
+    Realm realm;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -56,10 +61,19 @@ public class HomeFragment extends Fragment {
             });
             txvWelcome = root.findViewById(R.id.txvWelcome);
 
-            String username = "";
-            if (getActivity() != null) {
-                username = getActivity().getIntent().getStringExtra("username");
-                txvWelcome.setText("Hello, " + username + "!");
+            realm = Realm.getDefaultInstance();
+
+            SharedPreferences prefs = requireContext().getSharedPreferences("login_prefs", getContext().MODE_PRIVATE);
+            String email = prefs.getString("email", null);
+
+            if (email != null) {
+                User user = realm.where(User.class)
+                        .equalTo("email", email)
+                        .findFirst();
+
+                if (user != null) {
+                    txvWelcome.setText("Hello, " + user.getUsername() + "!");
+                }
             }
         }
 

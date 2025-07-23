@@ -136,8 +136,10 @@ public class LoginActivity extends AppCompatActivity {
     private void toHome(String email, String username) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("user_type", "buyer");
-        intent.putExtra("email", email);
-        intent.putExtra("username", username);
+        SharedPreferences prefs = getSharedPreferences("login_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("email", email);
+        editor.apply();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

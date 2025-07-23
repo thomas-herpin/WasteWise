@@ -124,13 +124,13 @@
 
         <Button
             android:id="@+id/btnCreateOffer"
-            android:layout_width="300px"
+            android:layout_width="450px"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_gravity="end"
             android:background="@drawable/button_green_rounded"
             android:textAllCaps="false"
-            android:text="Save Change"
+            android:text="Save Changes"
             android:textColor="#FFFFFF" />
 
         <TextView

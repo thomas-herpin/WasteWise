@@ -2,6 +2,7 @@ package com.example.wastewise;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,12 +36,6 @@ public class SettingActivity extends AppCompatActivity {
             finish();
         });
 
-//        btnBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                toProfile();
-//            }
-//        });
 
         btnLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +97,8 @@ public class SettingActivity extends AppCompatActivity {
 
     public void toExit(){
         Intent intent = new Intent(this, LandingPageActivity.class);
+        SharedPreferences prefs = getSharedPreferences("login_prefs", MODE_PRIVATE);
+        prefs.edit().clear().apply();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
