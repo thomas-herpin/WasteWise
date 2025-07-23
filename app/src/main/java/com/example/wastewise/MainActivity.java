@@ -1,5 +1,6 @@
 package com.example.wastewise;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -117,5 +118,35 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.fragment_container, defaultFragment)
                 .commit();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleFragmentFromIntent(intent);
+    }
+
+    private void handleFragmentFromIntent(Intent intent) {
+        String targetFragment = intent.getStringExtra("source");
+
+        if ("home".equals(targetFragment)) {
+            bottomNavigation.setSelectedItemId(R.id.nav_home);
+
+            Fragment homeFragment = new HomeFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, homeFragment)
+                    .commit();
+
+        } else if ("product".equals(targetFragment)) {
+            bottomNavigation.setSelectedItemId(R.id.nav_product);
+
+            Fragment productFragment = new ProductFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, productFragment)
+                    .commit();
+        }
     }
 }
