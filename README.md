@@ -50,4 +50,4 @@
 
 ## Video Demonstrasi Aplikasi WasteWise
 Video ini menunjukkan cara kerja aplikasi WasteWise dari sisi pembeli dan penjual.
-Tonton videonya di sini: 
+Tonton videonya di [sini](https://bit.ly/VideoDemoWasteWise).
