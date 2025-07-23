@@ -37,6 +37,8 @@ public class ProductSellerFragment extends Fragment {
     private ProductSellerAdapter adapter;
     private List<Product> productList;
 
+    private int idProduk;
+
     private Realm realm;
     private ExecutorService executorService;
 
@@ -75,6 +77,10 @@ public class ProductSellerFragment extends Fragment {
             editingProductId = product.getIdProduk();
         });
 
+        adapter.setOnItemDeleteClickListener(product -> {
+            deleteProduct(product.getIdProduk());
+        });
+
         // Load existing data from Realm
         loadProducts();
 
@@ -84,6 +90,24 @@ public class ProductSellerFragment extends Fragment {
         });
     }
 
+    private void deleteProduct(int idProduk) {
+        executorService.execute(() -> {
+            try (Realm backgroundRealm = Realm.getDefaultInstance()) {
+                backgroundRealm.executeTransaction(r -> {
+                    Product product = r.where(Product.class)
+                            .equalTo("idProduk", idProduk)
+                            .findFirst();
+                    if (product != null) {
+                        product.deleteFromRealm();
+                    }
+                });
+            }
+
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(this::loadProducts);
+            }
+        });
+    }
     private void addProduct() {
         String namaItem = edtNamaItem.getText().toString().trim();
         String jumlahItem = edtJumlahItem.getText().toString().trim();
